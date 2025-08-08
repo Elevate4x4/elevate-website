@@ -1,7 +1,34 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import Navbar from '../components/Navbar'
 
 export default function Home() {
+  const [status, setStatus] = useState({ submitting: false, succeeded: false, error: "" });
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    setStatus({ submitting: true, succeeded: false, error: "" });
+    try {
+      const form = e.currentTarget;
+      const data = new FormData(form);
+      const res = await fetch("https://formspree.io/f/xnnzowzl", {
+        method: "POST",
+        headers: { "Accept": "application/json" },
+        body: data
+      });
+      const json = await res.json();
+      if (res.ok) {
+        setStatus({ submitting: false, succeeded: true, error: "" });
+        form.reset();
+      } else {
+        const msg = (json && json.errors && json.errors[0] && json.errors[0].message) || "Something went wrong.";
+        setStatus({ submitting: false, succeeded: false, error: msg });
+      }
+    } catch (err) {
+      setStatus({ submitting: false, succeeded: false, error: "Network error. Please try again." });
+    }
+  }
+
   return (
     <>
       <Navbar />
@@ -103,28 +130,47 @@ export default function Home() {
       >
         <div className="max-w-xl mx-auto w-full">
           <h2 className="text-3xl font-extrabold mb-4">Contact Us For a Quote</h2>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <input
               type="text"
+              name="name"
               placeholder="Your Name"
+              required
               className="w-full px-4 py-2 border rounded"
             />
             <input
               type="email"
+              name="email"
               placeholder="Your Email"
+              required
               className="w-full px-4 py-2 border rounded"
             />
             <textarea
+              name="message"
               placeholder="Your Message"
+              required
               className="w-full px-4 py-2 border rounded"
               rows="5"
             />
             <button
               type="submit"
-              className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition"
+              disabled={status.submitting}
+              className="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              Send Message
+              {status.submitting ? "Sending..." : "Send Message"}
             </button>
+
+            {/* Metadata for inbox clarity */}
+            <input type="hidden" name="_subject" value="New Quote Request — Elevate 4x4" />
+            {/* Optional redirect after submit: <input type=\"hidden\" name=\"_next\" value=\"/thanks\" /> */}
+            {/* Simple honeypot anti-spam */}
+            <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
+            {/* Status feedback */}
+            <div className="text-sm mt-2" aria-live="polite">
+              {status.succeeded && <p className="text-green-600">Thanks — we\'ve got your request and will be in touch soon.</p>}
+              {status.error && <p className="text-red-600">Error: {status.error}</p>}
+            </div>
+
           </form>
         </div>
       </section>
