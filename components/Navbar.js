@@ -9,26 +9,25 @@ export default function Navbar() {
   return (
     <nav className="bg-black border-b text-white">
       {/* Top row: logo + hamburger (mobile) */}
-      <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-        <div className="flex-1 flex justify-center sm:justify-center">
+      <div className="max-w-7xl mx-auto px-4 py-4 flex flex-col items-center">
+        <div className="flex justify-center w-full">
           <Image
             src="/elevate-logo.png"
             alt="Elevate Logo"
-            width={800}
-            height={200}
-            className="w-44 sm:w-72 md:w-[400px] lg:w-[600px] xl:w-[800px] h-auto object-contain"
+            width={1000}
+            height={250}
+            className="w-[80%] max-w-[900px] h-auto object-contain"
             priority
           />
         </div>
 
         {/* Hamburger - shown on mobile only */}
         <button
-          className="sm:hidden ml-3 inline-flex items-center justify-center rounded p-2 ring-1 ring-white/20 hover:bg-white/10 transition"
+          className="sm:hidden mt-4 inline-flex items-center justify-center rounded p-2 ring-1 ring-white/20 hover:bg-white/10 transition"
           aria-label="Toggle menu"
           aria-expanded={open}
           onClick={() => setOpen(!open)}
         >
-          {/* icon */}
           <svg className="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor">
             {open ? (
               <path strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
