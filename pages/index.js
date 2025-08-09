@@ -57,7 +57,7 @@ export default function Home() {
           transition={{ duration: 2 }}
         >
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4">
-            Auto Electrical and Vehicle Builds for Recreation and Trade
+            Custom Auto Electrical and Canopy Services
           </h1>
           <p className="text-lg md:text-xl text-gray-200 mb-6">
             Expertly designed and installed auto electrical systems for touring and trade, paired with premium custom trays,
@@ -233,7 +233,7 @@ export default function Home() {
             <h4 className="font-semibold mb-3">Contact</h4>
             <ul className="space-y-2 text-sm">
               <li>Sunshine Coast, QLD</li>
-              <li><a href="mailto:info@elevate4x4.com.au" className="hover:text-white">info@elevate4x4.com.au</a></li>
+              <li><a href="mailto:sales@elevate4x4.com.au" className="hover:text-white">sales@elevate4x4.com.au</a></li>
               <li><a href="tel:+61403903461" className="hover:text-white">+61 403 903 461</a></li>
               <li>Mon–Fri: 8:00–4:00</li>
             </ul>
@@ -242,9 +242,9 @@ export default function Home() {
             <h4 className="font-semibold mb-3">Legal</h4>
             <ul className="space-y-2 text-sm">
               <li>ABN 57 850 251 59</li>
-              <li><a className="hover:text-white" href="#">Warranty Policy</a></li>
-              <li><a className="hover:text-white" href="#">Privacy Policy</a></li>
-              <li><a className="hover:text-white" href="#">Terms & Conditions</a></li>
+  <li><Link href="/policies#warranty" className="hover:text-white">Warranty Policy</Link></li>
+  <li><Link href="/policies#privacy" className="hover:text-white">Privacy Policy</Link></li>
+  <li><Link href="/policies#terms" className="hover:text-white">Terms & Conditions</Link></li>
             </ul>
           </div>
         </div>

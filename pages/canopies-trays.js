@@ -51,7 +51,8 @@ export default function CanopiesTrays() {
           </div>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-              'Integrated 50L fresh water tank',
+'Full length undbody trundle draw',              
+'Integrated 50L fresh water tank',
               'Central locking ready',
               'Uni-strut channel roof mounting',
               'Under-body toolboxes',
@@ -79,7 +80,7 @@ export default function CanopiesTrays() {
                 title: 'Touring Setup',
                 bullets: [
                   'Drawer system + pantry module',
-                  'Fridge slide & tie-downs',
+                  'Fridge + enclosure',
                   'Scene lighting & water pump ready',
                 ],
               },
@@ -87,15 +88,15 @@ export default function CanopiesTrays() {
                 title: 'Trade Setup',
                 bullets: [
                   'Under-body boxes & ladder racks',
-                  'Roof channel accessories',
-                  'Heavy-use floor & tie points',
+                  'Central locking',
+		  '240v battery charging & tool storage',
                 ],
               },
               {
                 title: 'Hybrid / Custom',
                 bullets: [
-                  'Electrical pre-wire options',
-                  'Compressor & air lines',
+                  'Electrical 240v & 12v fitout',
+                  'Kitchen and drawer setups',
                   'Custom mounts & brackets',
                 ],
               },
@@ -110,25 +111,42 @@ export default function CanopiesTrays() {
               </div>
             ))}
           </div>
-          <p className="text-sm text-gray-400 mt-6">
-            Lead time: <span className="text-white font-semibold">8–10 weeks</span> for custom orders. We keep limited stock on hand.
-          </p>
+
         </div>
       </section>
 
       {/* Gallery placeholders */}
-      <section className="bg-black text-white py-16 px-6">
-        <div className="max-w-7xl mx-auto">
-          <h3 className="text-2xl font-bold mb-6">Gallery</h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[1,2,3,4,5,6].map(i => (
-              <div key={i} className="aspect-[4/3] bg-white/[0.06] rounded-lg border border-white/10 flex items-center justify-center text-gray-400">
-                Add <code>/gallery-{i}.jpg</code>
-              </div>
-            ))}
-          </div>
+{/* Gallery */}
+<section className="bg-black text-white py-16 px-6">
+  <div className="max-w-7xl mx-auto">
+    <h3 className="text-2xl font-bold mb-6">Gallery</h3>
+    <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-4">
+      {[
+        '/canopies-1.jpg', // real image
+        '/gallery-2.jpg', // real image
+        '/gallery-3.jpg', // real image
+      ].map((src, i) => (
+        <div
+          key={i}
+          className="w-full h-auto object-contain"
+        >
+          {src ? (
+            <img
+              src={src}
+              alt={`Canopies & Trays ${i + 1}`}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="w-full h-full bg-white/5 flex items-center justify-center text-gray-400">
+              Add <code>/gallery-{i + 1}.jpg</code>
+            </div>
+          )}
         </div>
-      </section>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Warranty & Specs */}
       <section className="bg-neutral-950 text-gray-200 py-20 px-6">
@@ -137,13 +155,13 @@ export default function CanopiesTrays() {
             <h3 className="text-2xl font-bold text-white mb-4">Warranty</h3>
             <ul className="space-y-2 text-sm">
               <li>• <span className="text-white font-semibold">2-year structural warranty</span> on fabricated canopies & trays</li>
-              <li>• <span className="text-white font-semibold">2-year auto-electrical warranty</span> (to be negotiated based on application)</li>
+              <li>• <span className="text-white font-semibold">2-year auto-electrical warranty</span> </li>
             </ul>
           </div>
           <div>
             <h3 className="text-2xl font-bold text-white mb-4">Popular Add‑Ons</h3>
             <ul className="grid sm:grid-cols-2 gap-3 text-sm">
-              {['Fridge slides', 'Pantry & drawer modules', 'Roof rack accessories', 'Compressor mounts', 'Water pumps & plumbing', 'LED scene/work lights', 'Central locking kits', 'Solar + MPPT pre-wire'].map(x => (
+              {['Fridge units', 'Pantry & drawer modules', 'Water pumps & plumbing', 'LED scene/work lights', 'Central locking kits', 'Solar + 12V Fitout'].map(x => (
                 <li key={x} className="border border-white/10 rounded p-3 bg-white/[0.03]">{x}</li>
               ))}
             </ul>
