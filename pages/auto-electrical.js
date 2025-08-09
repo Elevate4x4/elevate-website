@@ -70,7 +70,7 @@ export default function AutoElectrical() {
     <h3 className="text-2xl font-bold mb-6">Gallery</h3>
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {[
-        '/auto-electrical-1.jpg', // real image
+        null,                      // placeholder
         '/auto-electrical-2.jpg',              // placeholder
         null                      // placeholder
       ].map((src, i) => (
