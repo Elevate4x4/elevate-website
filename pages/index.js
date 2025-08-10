@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Link from 'next/link'
 
@@ -30,146 +31,266 @@ export default function Home() {
     }
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'Elevate 4x4 Touring Solutions',
+    image: '/og-cover.jpg',
+    url: 'https://www.elevate4x4.com.au/',
+    telephone: '+61 403 903 461',
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Sunshine Coast',
+      addressRegion: 'QLD',
+      addressCountry: 'AU'
+    },
+    areaServed: ['Sunshine Coast', 'Queensland', 'Brisbane', 'Gympie', 'Noosa', 'Moreton Bay'],
+    description: 'Custom auto electrical, ute trays and canopies on the Sunshine Coast. Touring-ready builds, lithium systems, solar, central locking, and premium fabrication.',
+    sameAs: []
+  };
+
   return (
     <>
-      <div className="fixed top-0 left-0 w-full z-50 bg-black shadow-md">
+      <Head>
+        <title>Custom 4x4 Canopies, Ute Trays & Auto Electrical | Sunshine Coast QLD | Elevate</title>
+        <meta name="description" content="Elevate 4x4 Touring Solutions builds premium custom ute trays and canopies with expert auto electrical on the Sunshine Coast, QLD. Lithium systems, solar, central locking, water tanks, touring fitouts." />
+        <meta name="keywords" content="Sunshine Coast canopies, ute trays, 4x4 canopies, auto electrical Sunshine Coast, dual battery, lithium battery systems, solar MPPT, canopy central locking, custom touring builds QLD" />
+        <meta property="og:title" content="Elevate 4x4 Touring Solutions" />
+        <meta property="og:description" content="Premium custom trays & canopies with expert auto electrical on the Sunshine Coast, QLD." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/og-cover.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://www.elevate4x4.com.au/" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </Head>
+
+      {/* Fixed Navbar */}
+      <div className="fixed inset-x-0 top-0 z-50 bg-black/95 border-b border-white/10 backdrop-blur supports-[backdrop-filter]:bg-black/80">
         <Navbar />
       </div>
-      <div className="pt-20">
-        {/* Hero Section */}
+
+      <main className="pt-20 md:pt-24">
+        {/* Hero */}
         <motion.section
           id="services"
-          className="relative min-h-screen w-full bg-cover bg-center flex items-center justify-center text-white text-center"
-          style={{
-            backgroundImage:
-              "linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)), url('/service2.jpg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center center",
-          }}
+          className="relative min-h-[70vh] md:min-h-[85vh] w-full flex items-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 1.2 }}
+          style={{
+            backgroundImage:
+              "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.35)), url('/service2.jpg')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
         >
-          <div className="absolute inset-0 bg-black/40 z-0 pointer-events-none" />
-          <motion.div
-            className="relative z-10 p-10 rounded max-w-3xl"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2 }}
-          >
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4">
-              Custom Auto Electrical and Canopy Services
-            </h1>
-            <p className="text-lg md:text-xl text-gray-200 mb-6">
-              Expertly designed and installed auto electrical systems for touring and trade, paired with premium custom trays,
-              canopies, and vehicle builds — engineered for reliability, serviceability, and safety in Australian conditions.
-            </p>
-          </motion.div>
-        </motion.section>
-
-        {/* About Us Section */}
-        <section id="about" className="bg-black text-white py-24 px-6">
-          <div className="max-w-6xl mx-auto flex flex-col items-center gap-8">
-            <div className="flex flex-col justify-center text-center max-w-3xl">
-              <h2 className="text-3xl font-extrabold mb-4">About Us</h2>
-              <p className="text-lg text-gray-200 leading-relaxed mb-4">
-                At Elevate 4x4 Touring Solutions, we’re proud to call the Sunshine Coast home. 
-                With over 15 years of combined experience in the automotive industry, our team 
-                of qualified Mechanical Engineers and Auto Electricians is driven by one mission — 
-                to create tough, reliable solutions built for real Australian conditions.
-              </p>
-              <p className="text-lg text-gray-200 leading-relaxed mb-4">
-                We believe in supporting our local community and sourcing quality materials 
-                wherever possible, delivering products that combine innovation, durability, 
-                and value. From custom ute trays and canopies to full electrical fitouts, 
-                every build is designed to perform when it matters most.
-              </p>
-              <p className="text-lg text-gray-200 leading-relaxed">
-                Our goal is simple — provide everyday Australians with premium, adventure-ready 
-                touring solutions at an affordable price, without compromising on quality or 
-                craftsmanship. Whether you’re heading off-road, on the job, or across the country, 
-                you can count on Elevate to get you there.
-              </p>
-            </div>
-
-            <div className="w-full flex justify-center">
-              <img
-                src="/about.jpg"
-                alt="Our Team"
-                className="rounded-xl shadow-lg max-w-sm w-full h-auto"
-              />
-            </div>
-
+          <div className="mx-auto w-full max-w-7xl px-6 py-16 md:py-24">
             <motion.div
-              className="flex gap-6 mt-6 mb-2 justify-center w-full max-w-2xl"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
+              className="max-w-3xl text-white"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9 }}
             >
-              <Link
-                href="/auto-electrical"
-                className="flex-1 text-center text-lg border border-white text-white px-8 py-4 rounded hover:bg-white hover:text-black transition whitespace-nowrap"
-              >
-                Auto Electrical
-              </Link>
-              <Link
-                href="/canopies-trays"
-                className="flex-1 text-center text-lg border border-white text-white px-8 py-4 rounded hover:bg-white hover:text-black transition whitespace-nowrap"
-              >
-                Canopies & Trays
-              </Link>
+              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
+                Custom Auto Electrical, Ute Trays & Canopies — Sunshine Coast
+              </h1>
+              <p className="mt-5 text-base md:text-xl text-gray-200 leading-relaxed">
+                Expert touring and trade fitouts engineered for Australian conditions: lithium battery systems, solar & MPPT, central locking, diagnostics, and premium aluminium fabrication.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-3">
+                <Link href="/auto-electrical" className="inline-flex items-center rounded-lg border border-white px-5 py-3 text-sm md:text-base font-medium text-white hover:bg-white hover:text-black transition">
+                  Explore Auto Electrical
+                </Link>
+                <Link href="#canopies-trays" className="inline-flex items-center rounded-lg bg-white px-5 py-3 text-sm md:text-base font-semibold text-black hover:bg-gray-100 transition">
+                  Canopies & Trays
+                </Link>
+              </div>
             </motion.div>
           </div>
-        </section>
+        </motion.section>
 
-        {/* Testimonials Section */}
-        <section id="testimonials" className="bg-black text-white py-24 px-6">
-          <div className="max-w-7xl mx-auto text-center w-full">
-            <h2 className="text-3xl font-extrabold mb-10">What Our Customers Say</h2>
-            <div className="grid gap-8 md:grid-cols-3">
-              <div className="bg-white p-6 rounded-lg shadow">
-                <p className="text-gray-800 italic">
-                  "The best custom tray and canopy I’ve ever owned — bulletproof build quality and the electrics work flawlessly. 10/10."
+        {/* About */}
+        <section id="about" className="bg-black text-white">
+          <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+            <div className="grid gap-12 md:grid-cols-2 md:items-center">
+              <div className="order-2 md:order-1">
+                <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">About Elevate</h2>
+                <p className="mt-5 text-gray-200 leading-relaxed">
+                  Elevate 4x4 Touring Solutions is proudly based on the Sunshine Coast, QLD. With over 15 years of combined experience across Mechanical Engineering and Auto Electrical trades, we build tough, reliable solutions for real Australian conditions.
                 </p>
-                <div className="mt-4 font-semibold text-black">— Jake T., Sunshine Coast</div>
+                <p className="mt-4 text-gray-200 leading-relaxed">
+                  We source quality materials and design every system for serviceability and safety. From custom ute trays and canopies to complete electrical fitouts, each build is engineered to perform when it matters most.
+                </p>
+                <p className="mt-4 text-gray-200 leading-relaxed">
+                  Our goal is simple — deliver premium, adventure-ready touring solutions at fair prices, without compromising on craftsmanship or support. Based locally, we specialise in custom canopies, trays, lithium power, solar integration, lighting, diagnostics and OEM upgrades.
+                </p>
               </div>
-              <div className="bg-white p-6 rounded-lg shadow">
-                <p className="text-gray-800 italic">
-                  "Elevate's attention to detail is unmatched. Their electrical fitout is clean, intuitive, and reliable even in the outback."
-                </p>
-                <div className="mt-4 font-semibold text-black">— Sarah L., WA</div>
-              </div>
-              <div className="bg-white p-6 rounded-lg shadow">
-                <p className="text-gray-800 italic">
-                  "Couldn’t be happier. Great communication, a killer result, and their team even handled the extra mods we wanted."
-                </p>
-                <div className="mt-4 font-semibold text-black">— Mitch D., Brisbane</div>
+
+              <div className="order-1 md:order-2">
+                <img
+                  src="/about.jpg"
+                  alt="Elevate team fitting a custom 4x4 canopy and electrical system on the Sunshine Coast"
+                  className="w-full max-w-xl mx-auto rounded-2xl shadow-xl ring-1 ring-white/10"
+                  loading="lazy"
+                />
               </div>
             </div>
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="bg-white text-black py-24 px-6 text-center">
-          <div className="max-w-xl mx-auto w-full">
-            <h2 className="text-3xl font-extrabold mb-4">Contact Us For a Quote</h2>
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <label className="block text-left text-sm font-medium text-gray-700">
+        {/* Canopies & Trays (integrated) */}
+        <section id="canopies-trays" className="bg-black text-white">
+          {/* Intro / Positioning */}
+          <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+            <div className="grid md:grid-cols-2 gap-12 items-start">
+              <div>
+                <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Canopies & Trays</h2>
+                <p className="mt-5 text-gray-200 leading-relaxed">
+                  Elevate canopies and trays combine smart design with robust construction. We use
+                  <span className="text-white font-semibold"> 2.5&nbsp;mm 5052 marine‑grade aluminium</span> and
+                  <span className="text-white font-semibold"> 50×50 aluminium RHS bracing</span> for strength without the weight penalty.
+                  Our integrated systems deliver real‑world practicality for remote touring and demanding trade work.
+                </p>
+                <div className="mt-6 text-sm text-gray-400">
+                  Pricing for tray + canopy combos typically lands around
+                  <span className="text-white font-semibold"> $11–12k</span> (without electrical fitout).
+                </div>
+              </div>
+
+              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  'Full length under‑body trundle drawer',
+                  'Integrated 50L fresh water tank',
+                  'Central locking ready',
+                  'Uni‑strut channel roof mounting',
+                  'Under‑body toolboxes',
+                  'Heavy‑duty mud flaps',
+                  'Full length 900mm dimmable LED lights',
+                  'Jack‑off canopy legs',
+                  '2.5mm 5052 marine grade aluminium construction',
+                  '50×50 aluminium RHS bracing for strength',
+                ].map((f) => (
+                  <li key={f} className="border border-white/10 rounded-lg p-4 bg-white/[0.03]">
+                    <span className="text-white">{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          {/* Layouts / Options */}
+          <div className="bg-neutral-950/60">
+            <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 text-gray-200">
+              <h3 className="text-2xl font-bold text-white mb-6">Your Build, Your Way</h3>
+              <div className="grid md:grid-cols-3 gap-6">
+                {[
+                  { title: 'Touring Setup', bullets: ['Drawer system + pantry module','Fridge + enclosure','Scene lighting & water pump ready'] },
+                  { title: 'Trade Setup', bullets: ['Under‑body boxes & ladder racks','Central locking','240V battery charging & tool storage'] },
+                  { title: 'Hybrid / Custom', bullets: ['Electrical 240V & 12V fitout','Kitchen and drawer setups','Custom mounts & brackets'] },
+                ].map((card) => (
+                  <div key={card.title} className="rounded-xl border border-white/10 p-6 bg-white/[0.03]">
+                    <h4 className="text-white font-semibold mb-3">{card.title}</h4>
+                    <ul className="space-y-2 text-sm">
+                      {card.bullets.map((b) => <li key={b} className="text-gray-300">• {b}</li>)}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Gallery */}
+          <div className="mx-auto max-w-7xl px-6 py-16">
+            <h3 className="text-2xl font-bold mb-6">Gallery</h3>
+            <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-4">
+              {['/canopies-1.jpg','/gallery-2.jpg','/gallery-3.jpg'].map((src, i) => (
+                <div key={i} className="w-full h-auto">
+                  <img src={src} alt={`Canopies & Trays ${i + 1}`} className="w-full h-full object-cover rounded-lg" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Warranty & Specs */}
+          <div className="bg-neutral-950/60">
+            <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 text-gray-200 grid md:grid-cols-2 gap-12 items-start">
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-4">Warranty</h3>
+                <ul className="space-y-2 text-sm">
+                  <li>• <span className="text-white font-semibold">2‑year structural warranty</span> on fabricated canopies & trays</li>
+                  <li>• <span className="text-white font-semibold">2‑year auto‑electrical warranty</span></li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white mb-4">Popular Add‑Ons</h3>
+                <ul className="grid sm:grid-cols-2 gap-3 text-sm">
+                  {['Fridge units','Pantry & drawer modules','Water pumps & plumbing','LED scene/work lights','Central locking kits','Solar + 12V fitout'].map(x => (
+                    <li key={x} className="border border-white/10 rounded p-3 bg-white/[0.03]">{x}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="mx-auto max-w-4xl px-6 py-20 text-center">
+            <h3 className="text-3xl font-extrabold mb-3">Ready to design your canopy & tray?</h3>
+            <p className="text-gray-300 mb-8">Tell us your vehicle, usage and must‑haves and we’ll spec a package that fits your budget and timeline.</p>
+            <a href="#contact" className="inline-block border border-white px-6 py-3 rounded hover:bg-white hover:text-black transition">Get a Quote</a>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section id="testimonials" className="bg-black text-white">
+          <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-center">What Our Customers Say</h2>
+            <div className="mt-10 grid gap-6 sm:gap-8 md:grid-cols-3">
+              {[
+                {
+                  quote: 'The best custom tray and canopy I’ve ever owned — bulletproof build quality and the electrics work flawlessly. 10/10.',
+                  author: 'Jake T., Sunshine Coast'
+                },
+                {
+                  quote: "Elevate's attention to detail is unmatched. Their electrical fitout is clean, intuitive, and reliable even in the outback.",
+                  author: 'Sarah L., WA'
+                },
+                {
+                  quote: 'Couldn’t be happier. Great communication, a killer result, and their team even handled the extra mods we wanted.',
+                  author: 'Mitch D., Brisbane'
+                }
+              ].map((t, i) => (
+                <figure key={i} className="rounded-2xl bg-white p-6 shadow">
+                  <blockquote className="text-gray-800 italic">“{t.quote}”</blockquote>
+                  <figcaption className="mt-4 font-semibold text-black">— {t.author}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Contact */}
+        <section id="contact" className="bg-white text-black">
+          <div className="mx-auto max-w-3xl px-6 py-20 md:py-28 text-center">
+            <h2 className="text-3xl md:text-4xl font-extrabold">Contact Us for a Quote</h2>
+            <form className="mx-auto mt-8 grid gap-4 text-left" onSubmit={handleSubmit}>
+              <label className="text-sm font-medium text-gray-700">
                 Your Name
-                <input type="text" name="name" placeholder="John Smith" required className="mt-1 w-full px-4 py-2 border rounded" />
+                <input type="text" name="name" placeholder="John Smith" required minLength={2} className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black/70 focus:border-black/70" />
               </label>
-              <label className="block text-left text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-700">
                 Email
-                <input type="email" name="email" placeholder="you@example.com" required className="mt-1 w-full px-4 py-2 border rounded" />
+                <input type="email" name="email" placeholder="you@example.com" required className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black/70 focus:border-black/70" />
               </label>
-              <label className="block text-left text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-700">
                 Phone
-                <input type="tel" name="phone" placeholder="+61 4xx xxx xxx" required className="mt-1 w-full px-4 py-2 border rounded" inputMode="tel" autoComplete="tel" />
+                <input type="tel" name="phone" placeholder="+61 4xx xxx xxx" required pattern="^\\+?61\\s?4[0-9]{2}\\s?[0-9]{3}\\s?[0-9]{3}$" className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black/70 focus:border-black/70" inputMode="tel" autoComplete="tel" />
               </label>
-              <label className="block text-left text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-700">
                 What are you interested in?
-                <select name="interest" required className="mt-1 w-full px-4 py-2 border rounded bg-white" defaultValue="">
+                <select name="interest" required defaultValue="" className="mt-1 w-full rounded-lg border border-gray-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black/70 focus:border-black/70">
                   <option value="" disabled>Select an option…</option>
                   <option>Dual battery & DC–DC</option>
                   <option>Lithium battery system</option>
@@ -183,23 +304,26 @@ export default function Home() {
                   <option>Other (tell us below)</option>
                 </select>
               </label>
-              <label className="block text-left text-sm font-medium text-gray-700">
+              <label className="text-sm font-medium text-gray-700">
                 Tell us about your build
                 <textarea
                   name="message"
                   placeholder="Vehicle, budget, timeline, must-haves (fridge size, inverter, solar, water, etc.)"
                   required
-                  className="mt-1 w-full px-4 py-2 border rounded"
+                  minLength={10}
                   rows={5}
+                  className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black/70 focus:border-black/70"
                 />
               </label>
-              <button
-                type="submit"
-                disabled={status.submitting}
-                className="border border-black text-black px-6 py-2 rounded hover:bg-black hover:text-white transition disabled:opacity-60 disabled:cursor-not-allowed"
-              >
-                {status.submitting ? "Sending..." : "Send Message"}
-              </button>
+              <div className="pt-2">
+                <button
+                  type="submit"
+                  disabled={status.submitting}
+                  className="inline-flex items-center justify-center rounded-lg border border-black px-6 py-3 text-sm font-semibold text-black transition hover:bg-black hover:text-white disabled:opacity-60 disabled:cursor-not-allowed"
+                >
+                  {status.submitting ? 'Sending…' : 'Send Message'}
+                </button>
+              </div>
               <input type="hidden" name="_subject" value="New Quote Request — Elevate 4x4" />
               <input type="text" name="_gotcha" className="hidden" tabIndex={-1} autoComplete="off" />
               <div className="text-sm mt-2" aria-live="polite">
@@ -209,54 +333,54 @@ export default function Home() {
             </form>
           </div>
         </section>
+      </main>
 
-        {/* Footer */}
-        <footer className="bg-black text-gray-300 border-t border-white/10">
-          <div className="max-w-7xl mx-auto px-6 py-14 grid md:grid-cols-4 gap-10">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <img src="/logo-light.png" alt="Elevate 4x4" className="h-10" />
-                <span className="text-lg font-bold text-white">Elevate 4x4 Touring Solutions</span>
-              </div>
-              <p className="text-sm text-gray-400">
-                Innovative, highly-functional custom touring solutions at competitive pricing. Sunshine Coast, QLD.
-              </p>
+      {/* Footer */}
+      <footer className="bg-black text-gray-300 border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-6 py-14 grid md:grid-cols-4 gap-10">
+          <div>
+            <div className="flex items-center gap-3 mb-4">
+              <img src="/logo-light.png" alt="Elevate 4x4 logo" className="h-10" />
+              <span className="text-lg font-bold text-white">Elevate 4x4 Touring Solutions</span>
             </div>
-            <div>
-              <h4 className="font-semibold mb-3">Company</h4>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#services" className="hover:text-white">Home</a></li>
-                <li><a href="#about" className="hover:text-white">About Us</a></li>
-                <li><a href="#testimonials" className="hover:text-white">Testimonials</a></li>
-                <li><a href="#contact" className="hover:text-white">Get a Quote</a></li>
-                <li><Link href="/auto-electrical" className="hover:text-white">Auto Electrical Services</Link></li>
-                <li><Link href="/canopies-trays" className="hover:text-white">Canopies & Trays</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-3">Contact</h4>
-              <ul className="space-y-2 text-sm">
-                <li>Sunshine Coast, QLD</li>
-                <li><a href="mailto:sales@elevate4x4.com.au" className="hover:text-white">sales@elevate4x4.com.au</a></li>
-                <li><a href="tel:+61403903461" className="hover:text-white">+61 403 903 461</a></li>
-                <li>Mon–Fri: 8:00–4:00</li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-3">Legal</h4>
-              <ul className="space-y-2 text-sm">
-                <li>ABN 57 850 251 59</li>
-                <li><Link href="/policies#warranty" className="hover:text-white">Warranty Policy</Link></li>
-                <li><Link href="/policies#privacy" className="hover:text-white">Privacy Policy</Link></li>
-                <li><Link href="/policies#terms" className="hover:text-white">Terms & Conditions</Link></li>
-              </ul>
-            </div>
+            <p className="text-sm text-gray-400">
+              Innovative, highly‑functional custom touring solutions at competitive pricing. Sunshine Coast, QLD.
+            </p>
           </div>
-          <div className="border-t border-white/10 text-center text-xs py-6 text-gray-400">
-            © {new Date().getFullYear()} Elevate 4x4 Touring Solutions. All rights reserved.
+          <div>
+            <h4 className="font-semibold mb-3">Company</h4>
+            <ul className="space-y-2 text-sm">
+              <li><a href="#services" className="hover:text-white">Home</a></li>
+              <li><a href="#about" className="hover:text-white">About Us</a></li>
+              <li><a href="#canopies-trays" className="hover:text-white">Canopies & Trays</a></li>
+              <li><a href="#testimonials" className="hover:text-white">Testimonials</a></li>
+              <li><a href="#contact" className="hover:text-white">Get a Quote</a></li>
+              <li><Link href="/auto-electrical" className="hover:text-white">Auto Electrical Services</Link></li>
+            </ul>
           </div>
-        </footer>
-      </div>
+          <div>
+            <h4 className="font-semibold mb-3">Contact</h4>
+            <ul className="space-y-2 text-sm">
+              <li>Sunshine Coast, QLD</li>
+              <li><a href="mailto:sales@elevate4x4.com.au" className="hover:text-white">sales@elevate4x4.com.au</a></li>
+              <li><a href="tel:+61403903461" className="hover:text-white">+61 403 903 461</a></li>
+              <li>Mon–Fri: 8:00–4:00</li>
+            </ul>
+          </div>
+          <div>
+            <h4 className="font-semibold mb-3">Legal</h4>
+            <ul className="space-y-2 text-sm">
+              <li>ABN 57 850 251 59</li>
+              <li><Link href="/policies#warranty" className="hover:text-white">Warranty Policy</Link></li>
+              <li><Link href="/policies#privacy" className="hover:text-white">Privacy Policy</Link></li>
+              <li><Link href="/policies#terms" className="hover:text-white">Terms & Conditions</Link></li>
+            </ul>
+          </div>
+        </div>
+        <div className="border-t border-white/10 text-center text-xs py-6 text-gray-400">
+          © {new Date().getFullYear()} Elevate 4x4 Touring Solutions. All rights reserved.
+        </div>
+      </footer>
     </>
   )
 }
