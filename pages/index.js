@@ -39,7 +39,7 @@ export default function Home() {
     url: 'https://www.elevate4x4.com.au/',
     telephone: '+61 403 903 461',
     address: {
-      '@type': 'PostalAddress',
+      '@type': 'U13 67-73 Buderim Avenue, Mooloolaba',
       addressLocality: 'Sunshine Coast',
       addressRegion: 'QLD',
       addressCountry: 'AU'
@@ -98,7 +98,7 @@ export default function Home() {
                 Custom Auto Electrical, Ute Trays & Canopies — Sunshine Coast
               </h1>
               <p className="mt-5 text-base md:text-xl text-gray-200 leading-relaxed">
-                Expert touring and trade fitouts engineered for Australian conditions: lithium battery systems, solar & MPPT, central locking, diagnostics, and premium aluminium fabrication.
+                Expert touring and trade fitouts engineered for Australian conditions: battery management systems, 12v fitouts, central locking, diagnostics, and premium aluminium fabrication.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href="/auto-electrical" className="inline-flex items-center rounded-lg border border-white px-5 py-3 text-sm md:text-base font-medium text-white hover:bg-white hover:text-black transition">
@@ -154,74 +154,66 @@ export default function Home() {
                   <span className="text-white font-semibold"> 50×50 aluminium RHS bracing</span> for strength without the weight penalty.
                   Our integrated systems deliver real‑world practicality for remote touring and demanding trade work.
                 </p>
+		<h2 className="mt-5 text-3xl md:text-4xl font-extrabold tracking-tight">Auto Electrical</h2>  
+		<p className="mt-4 text-gray-200 leading-relaxed">
+    		Expert touring and trade fitouts engineered for Australian conditions: lithium battery systems, solar & MPPT,
+    		central locking, diagnostics, and premium aluminium fabrication — all tailored to work seamlessly with our canopy
+		    and tray builds.
+ 		 </p>
                 <div className="mt-6 text-sm text-gray-400">
                   Pricing for tray + canopy combos typically lands around
                   <span className="text-white font-semibold"> $11–12k</span> (without electrical fitout).
                 </div>
               </div>
 
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {[
-                  'Full length under‑body trundle drawer',
-                  'Integrated 50L fresh water tank',
-                  'Central locking ready',
-                  'Uni‑strut channel roof mounting',
-                  'Under‑body toolboxes',
-                  'Heavy‑duty mud flaps',
-                  'Full length 900mm dimmable LED lights',
-                  'Jack‑off canopy legs',
-                  '2.5mm 5052 marine grade aluminium construction',
-                  '50×50 aluminium RHS bracing for strength',
-                ].map((f) => (
-                  <li key={f} className="border border-white/10 rounded-lg p-4 bg-white/[0.03]">
-                    <span className="text-white">{f}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+              {/* Feature list: bullets on mobile, cards on sm+ (single UL version) */}
+              <div>
+                <ul className="list-disc list-inside space-y-1 text-white sm:list-none sm:grid sm:grid-cols-2 sm:gap-4">
+                  {[
+                    '2.5mm 5052 marine grade aluminium construction',
+                    '50×50 aluminium RHS bracing for strength',
+		    'Full length under‑body trundle drawer',
+                    'Integrated 50L fresh water tank',
+                    'Canopy Fitouts (full custom battery management systems to suit your needs)',
+                    '12V Accessories (winches, central locking, spotlights, UHF, GPS and communications)',
+                    'Full length 900mm dimmable LED lights',
+                    'Jack‑off canopy legs',
 
-          {/* Layouts / Options */}
-          <div className="bg-neutral-950/60">
-            <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 text-gray-200">
-              <h3 className="text-2xl font-bold text-white mb-6">Your Build, Your Way</h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                {[
-                  { title: 'Touring Setup', bullets: ['Drawer system + pantry module','Fridge + enclosure','Scene lighting & water pump ready'] },
-                  { title: 'Trade Setup', bullets: ['Under‑body boxes & ladder racks','Central locking','240V battery charging & tool storage'] },
-                  { title: 'Hybrid / Custom', bullets: ['Electrical 240V & 12V fitout','Kitchen and drawer setups','Custom mounts & brackets'] },
-                ].map((card) => (
-                  <div key={card.title} className="rounded-xl border border-white/10 p-6 bg-white/[0.03]">
-                    <h4 className="text-white font-semibold mb-3">{card.title}</h4>
-                    <ul className="space-y-2 text-sm">
-                      {card.bullets.map((b) => <li key={b} className="text-gray-300">• {b}</li>)}
-                    </ul>
-                  </div>
-                ))}
+
+                  ].map((f) => (
+                    <li key={f} className="sm:border sm:border-white/10 sm:rounded-lg sm:p-4 sm:bg-white/[0.03]">
+                      <span className="text-white">{f}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
 
-          {/* Gallery */}
-          <div className="mx-auto max-w-7xl px-6 py-16">
-            <h3 className="text-2xl font-bold mb-6">Gallery</h3>
-            <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-4">
-              {['/canopies-1.jpg','/gallery-2.jpg','/gallery-3.jpg'].map((src, i) => (
-                <div key={i} className="w-full h-auto">
-                  <img src={src} alt={`Canopies & Trays ${i + 1}`} className="w-full h-full object-cover rounded-lg" />
-                </div>
-              ))}
-            </div>
-          </div>
+<div className="mx-auto max-w-7xl px-6 py-16">
+  <h3 className="text-2xl font-bold mb-6">Gallery</h3>
+  <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
+    {['/canopies-2.jpg','/canopies-3.jpg','/canopies-1.jpg','/gallery-2.jpg','/gallery-3.jpg', '/jerry-can-holder-1.jpg','/spare-wheel-holder-1.jpg'].map((src, i) => (
+      <img
+        key={i}
+        src={src}
+        alt={`Gallery ${i+1}`}
+        className="mb-4 w-full h-auto break-inside-avoid rounded-lg"
+        loading="lazy"
+        decoding="async"
+      />
+    ))}
+  </div>
+</div>
 
           {/* Warranty & Specs */}
           <div className="bg-neutral-950/60">
             <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 text-gray-200 grid md:grid-cols-2 gap-12 items-start">
               <div>
                 <h3 className="text-2xl font-bold text-white mb-4">Warranty</h3>
-                <ul className="space-y-2 text-sm">
-                  <li>• <span className="text-white font-semibold">2‑year structural warranty</span> on fabricated canopies & trays</li>
-                  <li>• <span className="text-white font-semibold">2‑year auto‑electrical warranty</span></li>
+                <ul className="grid sm:grid-cols-2 gap-3 text-sm">
+                  <li className="border border-white/10 rounded p-3 bg-white/[0.03]"><span className="text-white font-semibold">2‑year structural warranty</span> on fabricated canopies & trays</li>
+                  <li className="border border-white/10 rounded p-3 bg-white/[0.03]"><span className="text-white font-semibold">2‑year auto‑electrical warranty</span></li>
                 </ul>
               </div>
               <div>

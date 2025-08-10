@@ -42,7 +42,7 @@ export default function AutoElectrical() {
             Our builds are neatly installed, fully customisable, and built to a standard you can trust when exploring our beautiful country.
           </p>
           
-          {/* Services — 2 rows of 3 boxes */}
+          {/* Capabilities — 2 rows of 3 boxes */}
           <h3 className="text-2xl font-bold text-white mb-6">Your Build, Your Way</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -70,9 +70,10 @@ export default function AutoElectrical() {
     <h3 className="text-2xl font-bold mb-6">Gallery</h3>
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
       {[
-        null,                      // placeholder
-        '/auto-electrical-2.jpg',              // placeholder
-        null                      // placeholder
+'/auto-electrical-2.jpg',              // placeholder        
+'/auto-electrical-1.jpg',              // placeholder
+        
+        '/gallery-2.jpg',              // placeholder                    // placeholder
       ].map((src, i) => (
         <div key={i} className="w-full h-auto object-contain">
           {src ? (
