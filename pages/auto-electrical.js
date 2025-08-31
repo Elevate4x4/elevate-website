@@ -188,6 +188,7 @@ export default function AutoElectrical() {
           <AutoSlider
             autoMs={4500}
             images={[
+              { src: '/auto-electrical-9.jpg', caption: '240V and 12V Power Outlets' },
               { src: '/auto-electrical-1.jpg', caption: '240V and 12V Power Outlets' },
               { src: '/gallery-2.jpg', caption: 'Custom Electrical Enclosure' },
               { src: '/auto-electrical-8.jpg', caption: 'BT-50 Behind Seat Lithium and Inverter Upgrade' },
