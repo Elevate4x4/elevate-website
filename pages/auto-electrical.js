@@ -190,15 +190,15 @@ export default function AutoElectrical() {
             images={[
               { src: '/auto-electrical-1.jpg', caption: '240V and 12V Power Outlets' },
               { src: '/gallery-2.jpg', caption: 'Custom Electrical Enclosure' },
-              { src: '/Auto Electrical 8.jpg', caption: 'BT-50 Behind Seat Lithium and Inverter Upgrade' },
-              { src: '/Auto Electrical 2.jpg', caption: 'Full Canopy System - Electrical Panel' },
+              { src: '/auto-electrical-8.jpg', caption: 'BT-50 Behind Seat Lithium and Inverter Upgrade' },
+              { src: '/auto-electrical-2b', caption: 'Full Canopy System - Electrical Panel' },
               { src: '/auto-electrical-2.jpg', caption: 'Full Canopy System - Control Panel' },
-              { src: '/Auto Electrical 3.jpg', caption: 'Full Canopy System - Fridge/Pantry Combo' },
-              { src: '/Auto Electrical 4.jpg', caption: 'Hidden Secondary Battery Under False-Floor - Prado' },
-              { src: '/Auto Electrical 5.jpg', caption: 'Compact Caravan Lithium Upgrade' },
-              { src: '/Auto Electrical 6.jpg', caption: 'Under Lounge Caravan Lithium Upgrade' },
-              { src: '/Auto Electrical 7.jpg', caption: 'Start Battery Distribution Block' },
-              { src: '/Auto Electrical 1.jpg', caption: 'Full Victron Caravan Lithium/Solar Upgrade' },
+              { src: '/auto-electrical-3.jpg', caption: 'Full Canopy System - Fridge/Pantry Combo' },
+              { src: '/auto-electrical-4.jpg', caption: 'Hidden Secondary Battery Under False-Floor - Prado' },
+              { src: '/auto-electrical-5.jpg', caption: 'Compact Caravan Lithium Upgrade' },
+              { src: '/auto-electrical-6.jpg', caption: 'Under Lounge Caravan Lithium Upgrade' },
+              { src: '/auto-electrical-7.jpg', caption: 'Start Battery Distribution Block' },
+              { src: '/auto-electrical-1b.jpg', caption: 'Full Victron Caravan Lithium/Solar Upgrade' },
             ]}
           />
         </div>
