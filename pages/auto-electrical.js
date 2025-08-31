@@ -191,7 +191,7 @@ export default function AutoElectrical() {
               { src: '/auto-electrical-1.jpg', caption: '240V and 12V Power Outlets' },
               { src: '/gallery-2.jpg', caption: 'Custom Electrical Enclosure' },
               { src: '/auto-electrical-8.jpg', caption: 'BT-50 Behind Seat Lithium and Inverter Upgrade' },
-              { src: '/auto-electrical-2b', caption: 'Full Canopy System - Electrical Panel' },
+              { src: '/auto-electrical-2b.jpg', caption: 'Full Canopy System - Electrical Panel' },
               { src: '/auto-electrical-2.jpg', caption: 'Full Canopy System - Control Panel' },
               { src: '/auto-electrical-3.jpg', caption: 'Full Canopy System - Fridge/Pantry Combo' },
               { src: '/auto-electrical-4.jpg', caption: 'Hidden Secondary Battery Under False-Floor - Prado' },
