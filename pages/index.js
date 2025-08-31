@@ -3,6 +3,8 @@ import { useState } from 'react'
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Link from 'next/link'
+import ProGallery from '@/components/ProGallery'
+import ProductGrid from '@/components/ProductGrid'
 
 export default function Home() {
   const [status, setStatus] = useState({ submitting: false, succeeded: false, error: "" });
@@ -190,20 +192,147 @@ export default function Home() {
             </div>
           </div>
 
+{/* Products */}
 <div className="mx-auto max-w-7xl px-6 py-16">
-  <h3 className="text-2xl font-bold mb-6">Gallery</h3>
-  <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 [column-fill:_balance]">
-    {['/canopies-2.jpg','/canopies-3.jpg','/canopies-1.jpg','/gallery-2.jpg','/gallery-3.jpg', '/jerry-can-holder-1.jpg','/spare-wheel-holder-1.jpg'].map((src, i) => (
-      <img
-        key={i}
-        src={src}
-        alt={`Gallery ${i+1}`}
-        className="mb-4 w-full h-auto break-inside-avoid rounded-lg"
-        loading="lazy"
-        decoding="async"
-      />
-    ))}
-  </div>
+  <h3 className="text-2xl font-bold mb-2">Products</h3>
+  <p className="text-sm text-gray-300 mb-6">
+    Tap a product for estimated pricing and details. Final prices depend on vehicle, options and install.
+  </p>
+
+  <ProductGrid
+    products={[
+      {
+        id: 'canopy',
+        name: 'Canopy 1200mm-1600mm.',
+        img: '/canopies-1.jpg',
+        blurb: '5052 aluminium, 50×50 bracing, central locking ready.',
+        estPrice: 'AUD $6,000–$8,000',
+        lead: 'Stock availiable or 8–10 weeks (custom build-to-order)',
+        warranty: '2-yr structural',
+        details: [
+          '2.5mm 5052 marine-grade aluminium construction',
+          '50×50 aluminium RHS strengthening',
+          'Uni-strut roof channel, underbody toolboxes',
+          '900mm adjustable LED lighting, central locking ready',
+          '12v and electrical solutions',
+          'Custom kitchen, draw and storage setups',
+        ],
+      },
+      {
+        id: 'electrical-fitout',
+        name: 'Electrical Fitout (Custom).',
+        img: '/auto-electrical-9.jpg',
+        blurb: 'Lithium, DC–DC, 12V, solar & distribution.',
+        estPrice: 'POA (from $2,500+)',
+        lead: '1-2 Weeks',
+        warranty: '2-yr auto-electrical',
+        details: [
+          'Victron/REDARC battery systems',
+          'BCDC/DC–DC, MPPT solar, AC chargers',
+          'Neat serviceable wiring & labeling',
+        ],
+	ratio: "aspect-[4/3]"
+      },
+      {
+        id: 'canopy-tray',
+        name: 'Canopy and Tray Combo.',
+        img: '/canopies-2.jpg',
+        blurb: 'Tough purpose built tray/canopy combos',
+        estPrice: 'AUD $8,000–$12,000',
+        lead: 'Depending on Stock. Can be built to custom order',
+        warranty: '1-yr components',
+        details: [
+          '2.5mm 5052 marine-grade aluminium construction',
+          '50×50 aluminium RHS strengthening',
+          'Uni-strut roof channel, underbody toolboxes',
+          'Integrated ~50L fresh water tank',
+          'Jack-off canopy legs, heavy-duty mud flaps',
+          'Central locking ready',
+	  'Full legth trundle draw',
+	  'Landcruiser 79 Series tail-lights',
+        ],
+	ratio: "aspect-[4/3]"
+      },
+      {
+  id: 'tray-only',
+  name: 'Aluminium Tray (Only).',
+  img: '/canopies-3.jpg',  // <-- replace with your actual tray photo
+  blurb: 'Heavy-duty aluminium tray designed for strength, usability and style.',
+  estPrice: 'AUD $3,500–$4,500',
+  lead: 'In Stock. Or 8–10 weeks (custom-build-to-order)',
+  warranty: '2-yr structural',
+  details: [
+    '2.5 mm 5052 marine-grade aluminium construction',
+    '50×50 aluminium RHS bracing for strength without weight penalty',
+    'Integrated under-body toolboxes (optional)',
+    'Heavy-duty custom mud flaps included',
+    'Designed for canopy integration or standalone use',
+    'Powder-coated finish available in black or custom colours',
+  ],
+  ratio: "2/1", // ✅ wide product photo
+      },
+      {
+        id: 'jerry-holder',
+        name: 'Jerry Can Holder.',
+        img: '/jerry-can-holder-1.jpg',
+        blurb: 'Secure, powder-coated carrier.',
+        estPrice: 'AUD $120–$180',
+        lead: 'In stock',
+        warranty: '2-yr Structural',
+        details: [
+          'Fits standard 20L jerry cans',
+          'Powder-coated 5052 marine grade aluminium',
+	  'Light weight custom design',
+    	  'Bolt-on installation with universal mounts',
+    	  'Drainage cut-outs to prevent rust and water build-up',
+        ],
+      },
+      {
+        id: 'spare-wheel',
+        name: 'Spare Wheel Holder.',
+        img: '/spare-wheel-holder-1.jpg',
+        blurb: 'Robust mount for touring setups.',
+        estPrice: 'AUD $240–$380',
+        lead: 'In stock',
+        warranty: '1-yr components',
+        details: [
+          'Adjustable PCD options',
+          'High-vibration safe hardware',
+          'Suits canopy/tray rear or side mounts',
+        ],
+      },
+      {
+        id: 'pantry',
+        name: 'Kitchen Pantry.',
+        img: '/gallery-3.jpg',
+        blurb: 'Roof access for racks & awnings.',
+        estPrice: 'AUD $350–$450',
+        lead: 'In stock',
+        warranty: '1-yr components',
+        details: [
+          'Matches canopy profile',
+          'Non-slip rungs',
+          'Bolt-on or rivnut mount options',
+        ],
+      },
+      {
+        id: 'electrical-enclosure',
+        name: 'Custom Electrical Enclosures.',
+        img: '/gallery-2.jpg',
+        blurb: 'Protect your electrics and Elevate your fitout.',
+        estPrice: 'AUD $480–$720',
+        lead: '2–3 weeks',
+        warranty: '1-yr components',
+        details: [
+          'Made to suit components',
+          'Integrated cooling fan to move away hot air',
+	  'Riv-nut design for quick access',
+          'Light-weight and strong',
+	  'Custom colour options availiable',
+        ],
+      },
+    ]}
+  />
 </div>
 
           {/* Warranty & Specs */}
