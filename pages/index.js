@@ -47,7 +47,7 @@ export default function Home() {
       addressCountry: 'AU'
     },
     areaServed: ['Sunshine Coast', 'Queensland', 'Brisbane', 'Gympie', 'Noosa', 'Moreton Bay'],
-    description: 'Custom auto electrical, ute trays and canopies on the Sunshine Coast. Touring-ready builds, lithium systems, solar, central locking, and premium fabrication.',
+    description: 'Custom auto electrical, ute trays and canopies on the Sunshine Coast. Touring-ready builds, lithium systems, 12v, reverse camera, solar, central locking, and premium fabrication.',
     sameAs: []
   };
 
@@ -56,7 +56,7 @@ export default function Home() {
       <Head>
         <title>Custom 4x4 Canopies, Ute Trays & Auto Electrical | Sunshine Coast QLD | Elevate</title>
         <meta name="description" content="Elevate 4x4 Touring Solutions builds premium custom ute trays and canopies with expert auto electrical on the Sunshine Coast, QLD. Lithium systems, solar, central locking, water tanks, touring fitouts." />
-        <meta name="keywords" content="Sunshine Coast canopies, ute trays, 4x4 canopies, auto electrical Sunshine Coast, dual battery, lithium battery systems, solar MPPT, canopy central locking, custom touring builds QLD" />
+        <meta name="keywords" content="Sunshine Coast canopies, ute trays, 4x4 canopies, 12v fitout, canopy fridge, aluminum tray, auto electrical Sunshine Coast, dual battery, lithium battery systems, canopy solar, canopy central locking, custom touring builds QLD" />
         <meta property="og:title" content="Elevate 4x4 Touring Solutions" />
         <meta property="og:description" content="Premium custom trays & canopies with expert auto electrical on the Sunshine Coast, QLD." />
         <meta property="og:type" content="website" />
@@ -97,7 +97,7 @@ export default function Home() {
               transition={{ duration: 0.9 }}
             >
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
-                Custom Auto Electrical, Ute Trays & Canopies — Sunshine Coast
+                Ute Trays & Canopies — Sunshine Coast
               </h1>
               <p className="mt-5 text-base md:text-xl text-gray-200 leading-relaxed">
                 Expert touring and trade fitouts engineered for Australian conditions: battery management systems, 12v fitouts, central locking, diagnostics, and premium aluminium fabrication.
@@ -127,7 +127,7 @@ export default function Home() {
                   We source quality materials and design every system for serviceability and safety. From custom ute trays and canopies to complete electrical fitouts, each build is engineered to perform when it matters most.
                 </p>
                 <p className="mt-4 text-gray-200 leading-relaxed">
-                  Our goal is simple — deliver premium, adventure-ready touring solutions at fair prices, without compromising on craftsmanship or support. Based locally, we specialise in custom canopies, trays, lithium power, solar integration, lighting, diagnostics and OEM upgrades.
+                  Our goal is simple — deliver premium, adventure-ready touring solutions at fair prices, without compromising on craftsmanship or support. Based locally, we specialise in custom canopies and trays with lithium power, solar integration, lighting and OEM upgrades.
                 </p>
               </div>
 
@@ -177,7 +177,7 @@ export default function Home() {
 		    'Full length under‑body trundle drawer',
                     'Integrated 50L fresh water tank',
                     'Canopy Fitouts (full custom battery management systems to suit your needs)',
-                    '12V Accessories (winches, central locking, spotlights, UHF, GPS and communications)',
+                    '12V Accessories (central locking, solar, charging, lithium batteries)',
                     'Full length 900mm dimmable LED lights',
                     'Jack‑off canopy legs',
 
@@ -238,7 +238,7 @@ export default function Home() {
         name: 'Canopy and Tray Combo.',
         img: '/canopies-2.jpg',
         blurb: 'Tough purpose built tray/canopy combos',
-        estPrice: 'AUD $8,000–$12,000',
+        estPrice: 'AUD $10,000–$12,000',
         lead: 'Depending on Stock. Can be built to custom order',
         warranty: '1-yr components',
         details: [
@@ -258,7 +258,7 @@ export default function Home() {
   name: 'Aluminium Tray (Only).',
   img: '/canopies-3.jpg',  // <-- replace with your actual tray photo
   blurb: 'Heavy-duty aluminium tray designed for strength, usability and style.',
-  estPrice: 'AUD $3,500–$4,500',
+  estPrice: 'AUD $5,000–$6,000',
   lead: 'In Stock. Or 8–10 weeks (custom-build-to-order)',
   warranty: '2-yr structural',
   details: [
@@ -274,9 +274,9 @@ export default function Home() {
       {
         id: 'jerry-holder',
         name: 'Jerry Can Holder.',
-        img: '/jerry-can-holder-1.jpg',
+        img: '/jerry-can-holder.png',
         blurb: 'Secure, powder-coated carrier.',
-        estPrice: 'AUD $120–$180',
+        estPrice: 'AUD $150',
         lead: 'In stock',
         warranty: '2-yr Structural',
         details: [
@@ -292,7 +292,7 @@ export default function Home() {
         name: 'Spare Wheel Holder.',
         img: '/spare-wheel-holder-1.jpg',
         blurb: 'Robust mount for touring setups.',
-        estPrice: 'AUD $240–$380',
+        estPrice: 'AUD $300',
         lead: 'In stock',
         warranty: '1-yr components',
         details: [
@@ -306,7 +306,7 @@ export default function Home() {
         name: 'Kitchen Pantry.',
         img: '/gallery-3.jpg',
         blurb: 'Roof access for racks & awnings.',
-        estPrice: 'AUD $350–$450',
+        estPrice: 'AUD $450',
         lead: 'In stock',
         warranty: '1-yr components',
         details: [
@@ -316,19 +316,35 @@ export default function Home() {
         ],
       },
       {
-        id: 'electrical-enclosure',
-        name: 'Custom Electrical Enclosures.',
-        img: '/gallery-2.jpg',
-        blurb: 'Protect your electrics and Elevate your fitout.',
-        estPrice: 'AUD $480–$720',
-        lead: '2–3 weeks',
-        warranty: '1-yr components',
+        id: 'fridge-surround',
+        name: 'Fridge Surround.',
+        img: '/fridge-surround-rendered.png',
+        blurb: '85L Surround and draw for Bushman and Kings style fridges.',
+        estPrice: 'AUD $600',
+        lead: 'In stock',
+        warranty: '2-yr structural',
         details: [
-          'Made to suit components',
-          'Integrated cooling fan to move away hot air',
-	  'Riv-nut design for quick access',
+          'Matches canopy profile',
+          'Engineered ventilation for maximum efficiency',
+	  'Integrated wood slide out bench',
+	  'Custom built to suit the 85L fridges from all local brands',
+          'Bolt-on or rivnut mount options',
+        ],
+      },
+      {
+        id: '900mm-light',
+        name: '900mm LED Lights.',
+        img: '/900mm-light.png',
+        blurb: 'Brighten up your work and camping with strip lights.',
+        estPrice: '$80',
+        lead: 'In Stock',
+        warranty: '2-yr components',
+        details: [
+          'Aluminum design',
+          '5-way dimmable',
+	  'Multiple colour configurations for insect control',
           'Light-weight and strong',
-	  'Custom colour options availiable',
+	  'Easy mounting and connection',
         ],
       },
     ]}

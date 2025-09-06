@@ -25,10 +25,10 @@ export default function AutoElectrical() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight mb-4">
-            Auto Electrical Services
+            Auto Electrical Fitout
           </h1>
           <p className="text-lg md:text-xl text-gray-200">
-            Clean, reliable power systems and wiring — built for Aussie touring and trade.
+            Clean, reliable canopy power systems and wiring — built for Aussie touring and trade.
           </p>
         </motion.div>
       </section>
@@ -45,11 +45,8 @@ export default function AutoElectrical() {
           <h3 className="text-2xl font-bold text-white mb-6">Your Build, Your Way</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              'Canopy Fitouts (full custom battery management systems to suit your needs)',
-              'Towing Solutions (anderson plugs, reverse cameras, trailer plugs and electric braking systems)',
-              '12V Accessories (winches, central locking, spotlights, UHF, GPS and communications)',
-              'Caravan and Solar Upgrades (battery management and full off grid systems)',
-              'Dual Battery Systems  (full custom solutions tailored to your vehicle and needs)',
+              'Canopy Fitouts (Central locking, 12V, Solar, DCDC Charging)',
+              'Dual Battery Systems  (Full custom lithium solutions tailored to your vehicle and needs)',
               'DIY (Using market leading brands, we can supply all electrical components and battery management systems at competitve prices)',
             ].map((item) => (
               <div
@@ -70,18 +67,17 @@ export default function AutoElectrical() {
           <ProGallery
             ratio="3/2"
             images={[
-              { src: '/auto-electrical-9.jpg', caption: '240V and 12V Power Outlets' },
+              { src: '/custom-enclosure.jpg', caption: 'Custom Canopy Enclosure' },
+              { src: '/fuse-blocks-and-outlets.jpg', caption: 'Fuse Blocks and Outlets' },              
+{ src: '/auto-electrical-9.jpg', caption: '240V and 12V Power Outlets' },
               { src: '/auto-electrical-1.jpg', caption: '240V and 12V Power Outlets' },
               { src: '/gallery-2.jpg', caption: 'Custom Electrical Enclosure' },
               { src: '/auto-electrical-8.jpg', caption: 'BT-50 Behind Seat Lithium and Inverter Upgrade' },
               { src: '/auto-electrical-2b.jpg', caption: 'Full Canopy System - Electrical Panel' },
               { src: '/auto-electrical-2.jpg', caption: 'Full Canopy System - Control Panel' },
               { src: '/auto-electrical-3.jpg', caption: 'Full Canopy System - Fridge/Pantry Combo' },
-              { src: '/auto-electrical-4.jpg', caption: 'Hidden Secondary Battery Under False-Floor - Prado' },
-              { src: '/auto-electrical-5.jpg', caption: 'Compact Caravan Lithium Upgrade' },
-              { src: '/auto-electrical-6.jpg', caption: 'Under Lounge Caravan Lithium Upgrade' },
               { src: '/auto-electrical-7.jpg', caption: 'Start Battery Distribution Block' },
-              { src: '/auto-electrical-1b.jpg', caption: 'Full Victron Caravan Lithium/Solar Upgrade' },
+
             ]}
           />
         </div>

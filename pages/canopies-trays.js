@@ -123,8 +123,11 @@ export default function CanopiesTrays() {
     <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-4">
       {[
         '/canopies-1.jpg', // real image
-        '/gallery-2.jpg', // real image
+        '/auto-electrical-9.jpg', // real image
         '/gallery-3.jpg', // real image
+        '/fridge-surround-3.jpg', // real image
+        '/full-canopy-accessories.png', // real image
+        '/full-canopy-fitout.jpg', // real image
       ].map((src, i) => (
         <div
           key={i}
