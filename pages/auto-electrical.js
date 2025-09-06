@@ -28,7 +28,7 @@ export default function AutoElectrical() {
             Auto Electrical Services
           </h1>
           <p className="text-lg md:text-xl text-gray-200">
-            Clean, reliable power systems and wiring — built for Aussie touring and trade.
+            Clean, reliable canopy power systems and wiring — built for Aussie touring and trade.
           </p>
         </motion.div>
       </section>
@@ -38,7 +38,7 @@ export default function AutoElectrical() {
         <div className="max-w-7xl mx-auto">
           <h2 className="text-3xl font-extrabold text-white mb-4">Built for Reliability & Safety</h2>
           <p className="leading-relaxed mb-12">
-            From simple upgrades to complete battery management systems, we design for <strong>reliability</strong>, <strong>serviceability</strong>, and <strong>safety</strong>. 
+            From simple upgrades to complete battery management systems, we design for <strong>reliability</strong>, <strong>serviceability</strong>, and <strong>safety</strong> into our canopies. 
             Our builds are neatly installed, fully customisable, and built to a standard you can trust when exploring our beautiful country.
           </p>
 
@@ -46,9 +46,6 @@ export default function AutoElectrical() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               'Canopy Fitouts (full custom battery management systems to suit your needs)',
-              'Towing Solutions (anderson plugs, reverse cameras, trailer plugs and electric braking systems)',
-              '12V Accessories (winches, central locking, spotlights, UHF, GPS and communications)',
-              'Caravan and Solar Upgrades (battery management and full off grid systems)',
               'Dual Battery Systems  (full custom solutions tailored to your vehicle and needs)',
               'DIY (Using market leading brands, we can supply all electrical components and battery management systems at competitve prices)',
             ].map((item) => (
@@ -77,11 +74,8 @@ export default function AutoElectrical() {
               { src: '/auto-electrical-2b.jpg', caption: 'Full Canopy System - Electrical Panel' },
               { src: '/auto-electrical-2.jpg', caption: 'Full Canopy System - Control Panel' },
               { src: '/auto-electrical-3.jpg', caption: 'Full Canopy System - Fridge/Pantry Combo' },
-              { src: '/auto-electrical-4.jpg', caption: 'Hidden Secondary Battery Under False-Floor - Prado' },
-              { src: '/auto-electrical-5.jpg', caption: 'Compact Caravan Lithium Upgrade' },
-              { src: '/auto-electrical-6.jpg', caption: 'Under Lounge Caravan Lithium Upgrade' },
               { src: '/auto-electrical-7.jpg', caption: 'Start Battery Distribution Block' },
-              { src: '/auto-electrical-1b.jpg', caption: 'Full Victron Caravan Lithium/Solar Upgrade' },
+  
             ]}
           />
         </div>

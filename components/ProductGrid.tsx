@@ -3,6 +3,9 @@ import { useMemo, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/router"
+import dynamic from "next/dynamic"
+
+const PayButton = dynamic(() => import("@/components/PayButton"), { ssr: false })
 
 type Product = {
   id: string
@@ -22,10 +25,19 @@ export default function ProductGrid({ products }: { products: Product[] }) {
   const active = useMemo(() => products.find(p => p.id === openId) || null, [openId, products])
 
   const router = useRouter()
+
   const handleQuoteClick = (productName: string) => {
     setOpenId(null) // close modal first
-    // then navigate to the contact section with the product prefilled
-    router.push(`/#contact?interest=${encodeURIComponent(productName)}`)
+    const href = `/#contact?interest=${encodeURIComponent(productName)}`
+    if (router.pathname === "/") {
+      router.push(href, undefined, { shallow: true })
+      setTimeout(() => {
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" })
+        ;(document.querySelector('input[name="name"]') as HTMLInputElement | null)?.focus()
+      }, 0)
+    } else {
+      router.push(href)
+    }
   }
 
   const ratioClass = (p: Product) => (p.ratio === "2/1" ? "aspect-[2/1]" : "aspect-[4/3]")
@@ -62,6 +74,7 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                     {p.estPrice}
                   </span>
                 </div>
+
                 <p className="mt-2 text-sm text-white/70">{p.blurb}</p>
 
                 <div className="mt-3 flex flex-wrap gap-2 text-xs text-white/70">
@@ -99,9 +112,10 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                   fill
                   sizes="90vw"
                   quality={90}
-                  className="object-contain"  // full view in modal
+                  className="object-contain"
                   priority
                 />
+                {/* full view in modal */}
               </div>
 
               <div className="p-6 text-white">
@@ -140,19 +154,25 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                   >
                     Get a Quote
                   </button>
+
+                  {/* Replace Learn more with Buy Now ONLY for Jerry Can Holder */}
+                  {active.id === "jerry-holder" ? (
+                    <PayButton />
+                  ) : (
+                    <Link
+                      href={{ pathname: "/auto-electrical" }}
+                      className="inline-flex items-center rounded-lg border border-white/10 px-5 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition"
+                    >
+                      Learn more
+                    </Link>
+                  )}
+
                   <button
                     onClick={() => setOpenId(null)}
                     className="inline-flex items-center rounded-lg border border-white/20 px-5 py-2 text-sm text-white hover:bg-white/10 transition"
                   >
                     Close
                   </button>
-                  {/* Optional: a learn-more deep link */}
-                  <Link
-                    href={{ pathname: "/auto-electrical" }}
-                    className="inline-flex items-center rounded-lg border border-white/10 px-5 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition"
-                  >
-                    Learn more
-                  </Link>
                 </div>
               </div>
             </div>

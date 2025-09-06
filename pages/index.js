@@ -5,6 +5,9 @@ import Navbar from '../components/Navbar'
 import Link from 'next/link'
 import ProGallery from '@/components/ProGallery'
 import ProductGrid from '@/components/ProductGrid'
+import dynamic from "next/dynamic";
+const PayButton = dynamic(() => import("@/components/PayButton"), { ssr: false });
+
 
 export default function Home() {
   const [status, setStatus] = useState({ submitting: false, succeeded: false, error: "" });
@@ -97,10 +100,10 @@ export default function Home() {
               transition={{ duration: 0.9 }}
             >
               <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
-                Custom Auto Electrical, Ute Trays & Canopies — Sunshine Coast
+                Custom  Ute Trays & Canopies — Sunshine Coast
               </h1>
               <p className="mt-5 text-base md:text-xl text-gray-200 leading-relaxed">
-                Expert touring and trade fitouts engineered for Australian conditions: battery management systems, 12v fitouts, central locking, diagnostics, and premium aluminium fabrication.
+                Expert touring and trade canopy fitouts engineered for Australian conditions: Battery management systems, 12v fitouts, central locking, and premium aluminium fabrication.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href="/auto-electrical" className="inline-flex items-center rounded-lg border border-white px-5 py-3 text-sm md:text-base font-medium text-white hover:bg-white hover:text-black transition">
@@ -127,7 +130,7 @@ export default function Home() {
                   We source quality materials and design every system for serviceability and safety. From custom ute trays and canopies to complete electrical fitouts, each build is engineered to perform when it matters most.
                 </p>
                 <p className="mt-4 text-gray-200 leading-relaxed">
-                  Our goal is simple — deliver premium, adventure-ready touring solutions at fair prices, without compromising on craftsmanship or support. Based locally, we specialise in custom canopies, trays, lithium power, solar integration, lighting, diagnostics and OEM upgrades.
+                  Our goal is simple — deliver premium, adventure-ready touring solutions at fair prices, without compromising on craftsmanship or support. Based locally, we specialise in custom canopies, trays with optional lithium power, solar integration, lighting, diagnostics and OEM upgrades.
                 </p>
               </div>
 
@@ -158,8 +161,8 @@ export default function Home() {
                 </p>
 		<h2 className="mt-5 text-3xl md:text-4xl font-extrabold tracking-tight">Auto Electrical</h2>  
 		<p className="mt-4 text-gray-200 leading-relaxed">
-    		Expert touring and trade fitouts engineered for Australian conditions: lithium battery systems, solar & MPPT,
-    		central locking, diagnostics, and premium aluminium fabrication — all tailored to work seamlessly with our canopy
+    		Expert canopy touring and trade fitouts engineered for Australian conditions: lithium battery systems, solar & MPPT,
+    		central locking, and premium aluminium fabrication — all tailored to work seamlessly with our canopy
 		    and tray builds.
  		 </p>
                 <div className="mt-6 text-sm text-gray-400">
@@ -177,7 +180,7 @@ export default function Home() {
 		    'Full length under‑body trundle drawer',
                     'Integrated 50L fresh water tank',
                     'Canopy Fitouts (full custom battery management systems to suit your needs)',
-                    '12V Accessories (winches, central locking, spotlights, UHF, GPS and communications)',
+                    '12V Accessories (Central locking, inverters, solar chargers, secondary batteries, fridges, induction cooktops)',
                     'Full length 900mm dimmable LED lights',
                     'Jack‑off canopy legs',
 
@@ -276,7 +279,7 @@ export default function Home() {
         name: 'Jerry Can Holder.',
         img: '/jerry-can-holder-1.jpg',
         blurb: 'Secure, powder-coated carrier.',
-        estPrice: 'AUD $120–$180',
+        estPrice: 'AUD $180',
         lead: 'In stock',
         warranty: '2-yr Structural',
         details: [
@@ -333,6 +336,27 @@ export default function Home() {
       },
     ]}
   />
+</div>
+
+{/* Featured: Jerry Can Holder + Buy button */}
+<div className="mx-auto max-w-7xl px-6 mt-2 mb-16">
+  <div className="grid md:grid-cols-[1fr_auto] gap-6 items-center bg-white/[0.03] border border-white/10 rounded-2xl p-6">
+    <div className="flex items-center gap-4">
+      <img
+        src="/jerry-can-holder-1.jpg"
+        alt="Jerry Can Holder"
+        className="w-28 h-28 object-cover rounded-lg ring-1 ring-white/10"
+      />
+      <div>
+        <h3 className="text-xl font-semibold text-white">Jerry Can Holder</h3>
+        <p className="text-gray-300">Secure, powder-coated 5052 aluminium — fits standard 20 L cans.</p>
+        <p className="mt-1 text-sm text-gray-400">Price: <span className="text-white font-semibold">$180.00 AUD</span></p>
+      </div>
+    </div>
+    <div className="justify-self-end">
+      <PayButton />
+    </div>
+  </div>
 </div>
 
           {/* Warranty & Specs */}
@@ -505,3 +529,5 @@ export default function Home() {
     </>
   )
 }
+
+
