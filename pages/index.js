@@ -180,8 +180,6 @@ export default function Home() {
                     '12V Accessories (central locking, solar, charging, lithium batteries)',
                     'Full length 900mm dimmable LED lights',
                     'Jack‑off canopy legs',
-
-
                   ].map((f) => (
                     <li key={f} className="sm:border sm:border-white/10 sm:rounded-lg sm:p-4 sm:bg-white/[0.03]">
                       <span className="text-white">{f}</span>
@@ -204,7 +202,7 @@ export default function Home() {
       {
         id: 'canopy',
         name: 'Canopy 1200mm-1600mm.',
-        img: '/canopies-1.jpg',
+        imgs: ['/canopies-1.jpg', '/full-canopy-fitout.jpg'],
         blurb: '5052 aluminium, 50×50 bracing, central locking ready.',
         estPrice: 'AUD $6,000–$8,000',
         lead: 'Stock availiable or 8–10 weeks (custom build-to-order)',
@@ -221,7 +219,11 @@ export default function Home() {
       {
         id: 'electrical-fitout',
         name: 'Electrical Fitout (Custom).',
-        img: '/auto-electrical-9.jpg',
+        imgs: [
+          '/auto-electrical-9.jpg', // cover
+          '/custom-enclosure.jpg','/fuse-blocks-and-outlets.jpg','/electrical-enclosure-4.jpg','/auto-electrical-1.jpg',
+          '/auto-electrical-2.jpg','/auto-electrical-8.jpg',
+        ],
         blurb: 'Lithium, DC–DC, 12V, solar & distribution.',
         estPrice: 'POA (from $2,500+)',
         lead: '1-2 Weeks',
@@ -231,12 +233,12 @@ export default function Home() {
           'BCDC/DC–DC, MPPT solar, AC chargers',
           'Neat serviceable wiring & labeling',
         ],
-	ratio: "aspect-[4/3]"
+        ratio: "4/3"
       },
       {
         id: 'canopy-tray',
         name: 'Canopy and Tray Combo.',
-        img: '/canopies-2.jpg',
+        imgs: ['/canopies-2.jpg','/full-canopy-accessories.png', '/canopies-3.jpg','/canopy-tray.png', '/canopy-tray-2.png'],
         blurb: 'Tough purpose built tray/canopy combos',
         estPrice: 'AUD $10,000–$12,000',
         lead: 'Depending on Stock. Can be built to custom order',
@@ -251,32 +253,32 @@ export default function Home() {
 	  'Full legth trundle draw',
 	  'Landcruiser 79 Series tail-lights',
         ],
-	ratio: "aspect-[4/3]"
+        ratio: "4/3"
       },
       {
-  id: 'tray-only',
-  name: 'Aluminium Tray (Only).',
-  img: '/canopies-3.jpg',  // <-- replace with your actual tray photo
-  blurb: 'Heavy-duty aluminium tray designed for strength, usability and style.',
-  estPrice: 'AUD $5,000–$6,000',
-  lead: 'In Stock. Or 8–10 weeks (custom-build-to-order)',
-  warranty: '2-yr structural',
-  details: [
-    '2.5 mm 5052 marine-grade aluminium construction',
-    '50×50 aluminium RHS bracing for strength without weight penalty',
-    'Integrated under-body toolboxes (optional)',
-    'Heavy-duty custom mud flaps included',
-    'Designed for canopy integration or standalone use',
-    'Powder-coated finish available in black or custom colours',
-  ],
-  ratio: "2/1", // ✅ wide product photo
+        id: 'tray-only',
+        name: 'Aluminium Tray (Only).',
+        imgs: ['/canopies-3.jpg'],
+        blurb: 'Heavy-duty aluminium tray designed for strength, usability and style.',
+        estPrice: 'AUD $5,000–$6,000',
+        lead: 'In Stock. Or 8–10 weeks (custom-build-to-order)',
+        warranty: '2-yr structural',
+        details: [
+          '2.5 mm 5052 marine-grade aluminium construction',
+          '50×50 aluminium RHS bracing for strength without weight penalty',
+          'Integrated under-body toolboxes (optional)',
+          'Heavy-duty custom mud flaps included',
+          'Designed for canopy integration or standalone use',
+          'Powder-coated finish available in black or custom colours',
+        ],
+        ratio: "2/1"
       },
       {
         id: 'jerry-holder',
         name: 'Jerry Can Holder.',
-        img: '/jerry-can-holder.png',
+        imgs: [ '/jerry-can-holder-1.jpg','/jerry-can-holder.png'],
         blurb: 'Secure, powder-coated carrier.',
-        estPrice: 'AUD $150',
+        Price: 'AUD $150',
         lead: 'In stock',
         warranty: '2-yr Structural',
         details: [
@@ -290,9 +292,9 @@ export default function Home() {
       {
         id: 'spare-wheel',
         name: 'Spare Wheel Holder.',
-        img: '/spare-wheel-holder-1.jpg',
+        imgs: ['/spare-wheel-holder-1.jpg'],
         blurb: 'Robust mount for touring setups.',
-        estPrice: 'AUD $300',
+        Price: 'AUD $300',
         lead: 'In stock',
         warranty: '1-yr components',
         details: [
@@ -304,9 +306,9 @@ export default function Home() {
       {
         id: 'pantry',
         name: 'Kitchen Pantry.',
-        img: '/gallery-3.jpg',
+        imgs: ['/gallery-3.jpg', '/pantry-3.png','/pantry-2.png'],
         blurb: 'Roof access for racks & awnings.',
-        estPrice: 'AUD $450',
+        Price: 'AUD $450',
         lead: 'In stock',
         warranty: '1-yr components',
         details: [
@@ -318,15 +320,15 @@ export default function Home() {
       {
         id: 'fridge-surround',
         name: 'Fridge Surround.',
-        img: '/fridge-surround-rendered.png',
-        blurb: '85L Surround and draw for Bushman and Kings style fridges.',
-        estPrice: 'AUD $600',
+        imgs: ['/fridge-surround-rendered.png', '/fridge-surround-3.jpg', '/fridge-surround-bench-2.jpg', '/fridge-surround-4.jpg'],
+        blurb: '85L fridge surround with optional slide out bench.',
+        Price: 'AUD $600',
         lead: 'In stock',
         warranty: '2-yr structural',
         details: [
-          'Matches canopy profile',
+          'Silver or black (5052 marine grade aluminum)',
           'Engineered ventilation for maximum efficiency',
-	  'Integrated wood slide out bench',
+	  'Integrated wood slide out bench (Optional)',
 	  'Custom built to suit the 85L fridges from all local brands',
           'Bolt-on or rivnut mount options',
         ],
@@ -334,9 +336,9 @@ export default function Home() {
       {
         id: '900mm-light',
         name: '900mm LED Lights.',
-        img: '/900mm-light.png',
+        imgs: ['/900mm-light.png', '/light-2.png', ],
         blurb: 'Brighten up your work and camping with strip lights.',
-        estPrice: '$80',
+        Price: '$80',
         lead: 'In Stock',
         warranty: '2-yr components',
         details: [
@@ -355,7 +357,7 @@ export default function Home() {
           <div className="bg-neutral-950/60">
             <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 text-gray-200 grid md:grid-cols-2 gap-12 items-start">
               <div>
-                <h3 className="text-2xl font-bold text-white mb-4">Warranty</h3>
+                <h3 className="text-2xl font-bold text白 mb-4">Warranty</h3>
                 <ul className="grid sm:grid-cols-2 gap-3 text-sm">
                   <li className="border border-white/10 rounded p-3 bg-white/[0.03]"><span className="text-white font-semibold">2‑year structural warranty</span> on fabricated canopies & trays</li>
                   <li className="border border-white/10 rounded p-3 bg-white/[0.03]"><span className="text-white font-semibold">2‑year auto‑electrical warranty</span></li>

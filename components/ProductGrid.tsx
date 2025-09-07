@@ -1,13 +1,12 @@
 // components/ProductGrid.tsx
-import { useMemo, useState } from "react"
+import { useMemo, useState, useEffect } from "react"
 import Image from "next/image"
-import Link from "next/link"
-import { useRouter } from "next/router"
 
 type Product = {
   id: string
   name: string
-  img: string
+  /** Cover image will be imgs[0] */
+  imgs: string[]
   blurb: string
   estPrice: string
   details: string[]
@@ -20,12 +19,23 @@ type Product = {
 export default function ProductGrid({ products }: { products: Product[] }) {
   const [openId, setOpenId] = useState<string | null>(null)
   const active = useMemo(() => products.find(p => p.id === openId) || null, [openId, products])
+  const [selectedIndex, setSelectedIndex] = useState(0)
 
-  const router = useRouter()
+  useEffect(() => {
+    // Reset selected image when opening a new product
+    if (openId) setSelectedIndex(0)
+  }, [openId])
+
   const handleQuoteClick = (productName: string) => {
-    setOpenId(null) // close modal first
-    // then navigate to the contact section with the product prefilled
-    router.push(`/#contact?interest=${encodeURIComponent(productName)}`)
+    setOpenId(null);
+    if (typeof window !== "undefined") {
+      const el = document.getElementById("contact");
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      const url = new URL(window.location.href);
+      url.hash = "contact";
+      url.searchParams.set("interest", productName);
+      window.history.replaceState({}, "", url.toString());
+    }
   }
 
   const ratioClass = (p: Product) => (p.ratio === "2/1" ? "aspect-[2/1]" : "aspect-[4/3]")
@@ -41,10 +51,10 @@ export default function ProductGrid({ products }: { products: Product[] }) {
               onClick={() => setOpenId(p.id)}
               className="group w-full text-left rounded-2xl bg-neutral-900 ring-1 ring-white/10 hover:ring-white/20 transition"
             >
-              {/* Card image (full-bleed, taller by default) */}
+              {/* Card image (cover) */}
               <div className={`relative overflow-hidden rounded-t-2xl bg-neutral-950 ${ratioClass(p)}`}>
                 <Image
-                  src={p.img}
+                  src={p.imgs[0]}
                   alt={p.name}
                   fill
                   sizes="(min-width:1024px) 33vw, (min-width:640px) 50vw, 100vw"
@@ -92,19 +102,55 @@ export default function ProductGrid({ products }: { products: Product[] }) {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="w-full overflow-hidden rounded-2xl bg-neutral-950 ring-1 ring-white/10">
+              {/* Main image */}
               <div className="relative aspect-[16/10] bg-black">
                 <Image
-                  src={active.img}
+                  src={active.imgs[selectedIndex]}
                   alt={active.name}
                   fill
                   sizes="90vw"
                   quality={90}
-                  className="object-contain"  // full view in modal
+                  className="object-contain"
                   priority
                 />
+                {/* Prev / Next */}
+                {active.imgs.length > 1 && (
+                  <>
+                    <button
+                      aria-label="Previous image"
+                      className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 px-3 py-2 text-white hover:bg-white/20"
+                      onClick={() => setSelectedIndex((i) => (i - 1 + active.imgs.length) % active.imgs.length)}
+                    >
+                      ‹
+                    </button>
+                    <button
+                      aria-label="Next image"
+                      className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-white/10 px-3 py-2 text-white hover:bg-white/20"
+                      onClick={() => setSelectedIndex((i) => (i + 1) % active.imgs.length)}
+                    >
+                      ›
+                    </button>
+                  </>
+                )}
               </div>
 
               <div className="p-6 text-white">
+                {/* Thumbnails */}
+                {active.imgs.length > 1 && (
+                  <div className="flex gap-2 mb-4 overflow-x-auto pb-1">
+                    {active.imgs.map((img, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setSelectedIndex(i)}
+                        className={`relative w-16 h-16 rounded border ${i === selectedIndex ? "border-white" : "border-white/30"}`}
+                        aria-label={`Show image ${i + 1}`}
+                      >
+                        <Image src={img} alt={`${active.name} ${i + 1}`} fill className="object-cover rounded" />
+                      </button>
+                    ))}
+                  </div>
+                )}
+
                 <div className="flex items-start justify-between gap-4">
                   <div>
                     <h3 className="text-xl font-bold">{active.name}</h3>
@@ -113,7 +159,7 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                   <button
                     aria-label="Close"
                     onClick={() => setOpenId(null)}
-                    className="rounded-full bg-white/10 px-3 py-1 text-white hover:bg-white/20"
+                    className="rounded-full bg-white/10 px-3 py-1 text-white hover:bgWHITE/20"
                   >
                     ✕
                   </button>
@@ -146,13 +192,6 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                   >
                     Close
                   </button>
-                  {/* Optional: a learn-more deep link */}
-                  <Link
-                    href={{ pathname: "/auto-electrical" }}
-                    className="inline-flex items-center rounded-lg border border-white/10 px-5 py-2 text-sm text-white/80 hover:text-white hover:bg-white/5 transition"
-                  >
-                    Learn more
-                  </Link>
                 </div>
               </div>
             </div>
