@@ -1,9 +1,9 @@
+// pages/index.js
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Link from 'next/link'
-import ProGallery from '@/components/ProGallery'
 import ProductGrid from '@/components/ProductGrid'
 
 export default function Home() {
@@ -25,7 +25,7 @@ export default function Home() {
         setStatus({ submitting: false, succeeded: true, error: "" });
         form.reset();
       } else {
-        const msg = (json && json.errors && json.errors[0] && json.errors[0].message) || "Something went wrong.";
+        const msg = (json?.errors?.[0]?.message) || "Something went wrong.";
         setStatus({ submitting: false, succeeded: false, error: msg });
       }
     } catch (err) {
@@ -41,8 +41,9 @@ export default function Home() {
     url: 'https://www.elevate4x4.com.au/',
     telephone: '+61 403 903 461',
     address: {
-      '@type': 'U13 67-73 Buderim Avenue, Mooloolaba',
-      addressLocality: 'Sunshine Coast',
+      '@type': 'PostalAddress',
+      streetAddress: 'U13 67-73 Buderim Avenue',
+      addressLocality: 'Mooloolaba',
       addressRegion: 'QLD',
       addressCountry: 'AU'
     },
@@ -74,19 +75,18 @@ export default function Home() {
         <Navbar />
       </div>
 
-      <main className="pt-20 md:pt-24">
+      {/* Add bg-black so any offset below the navbar isn’t white */}
+      <main className="pt-20 md:pt-24 bg-black">
         {/* Hero */}
         <motion.section
           id="services"
-          className="relative min-h-[70vh] md:min-h-[85vh] w-full flex items-center"
+          className="relative min-h-[70vh] md:min-h-[75vh] w-full flex items-center bg-cover bg-no-repeat bg-[position:center_55%] md:bg-[position:center_35%]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2 }}
           style={{
             backgroundImage:
-              "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.35)), url('/service2.jpg')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
+              "linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.35)), url('/service2.jpg')"
           }}
         >
           <div className="mx-auto w-full max-w-7xl px-6 py-16 md:py-24">
@@ -106,14 +106,14 @@ export default function Home() {
                 <Link href="/auto-electrical" className="inline-flex items-center rounded-lg border border-white px-5 py-3 text-sm md:text-base font-medium text-white hover:bg-white hover:text-black transition">
                   Explore Auto Electrical
                 </Link>
-                <Link href="#canopies-trays" className="inline-flex items-center rounded-lg bg-white px-5 py-3 text-sm md:text-base font-semibold text-black hover:bg-gray-100 transition">
+                {/* ✅ Updated to page link */}
+                <Link href="/canopies-trays" className="inline-flex items-center rounded-lg bg-white px-5 py-3 text-sm md:text-base font-semibold text-black hover:bg-gray-100 transition">
                   Canopies & Trays
                 </Link>
               </div>
             </motion.div>
           </div>
         </motion.section>
-
         {/* About */}
         <section id="about" className="bg-black text-white">
           <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
@@ -143,43 +143,204 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Canopies & Trays (integrated) */}
+        {/* Products */}
+        <div className="mx-auto max-w-7xl px-6 py-16">
+          <h3 className="text-2xl font-bold mb-2 text-white">Products</h3>
+          <p className="text-sm text-gray-100 mb-6">
+            Tap a product for estimated pricing and details. Final prices depend on vehicle, options and install.
+          </p>
+
+          <ProductGrid
+            products={[
+              {
+                id: 'canopy',
+                name: 'Canopy 1200mm-1600mm.',
+                imgs: ['/canopies-1.jpg', '/full-canopy-fitout.jpg'],
+                blurb: '5052 aluminium, 50×50 bracing, central locking ready.',
+                estPrice: 'AUD $6,000–$8,000',
+                lead: 'Stock availiable or 8–10 weeks (custom build-to-order)',
+                warranty: '2-yr structural',
+                details: [
+                  '2.5mm 5052 marine-grade aluminium construction',
+                  '50×50 aluminium RHS strengthening',
+                  'Uni-strut roof channel, underbody toolboxes',
+                  '900mm adjustable LED lighting, central locking ready',
+                  '12v and electrical solutions',
+                  'Custom kitchen, draw and storage setups',
+                ],
+              },
+              {
+                id: 'electrical-fitout',
+                name: 'Electrical Fitout (Custom).',
+                imgs: [
+                  '/auto-electrical-9.jpg',
+                  '/custom-enclosure.jpg','/fuse-blocks-and-outlets.jpg','/electrical-enclosure-4.jpg','/auto-electrical-1.jpg',
+                  '/auto-electrical-2.jpg','/auto-electrical-8.jpg',
+                ],
+                blurb: 'Lithium, DC–DC, 12V, solar & distribution.',
+                estPrice: 'From $2,500+',
+                lead: '1-2 Weeks',
+                warranty: '2-yr auto-electrical',
+                details: [
+                  'Victron/REDARC battery systems',
+                  'BCDC/DC–DC, MPPT solar, AC chargers',
+                  'Neat serviceable wiring & labeling',
+                ],
+                ratio: "4/3"
+              },
+              {
+                id: 'canopy-tray',
+                name: 'Canopy and Tray Combo.',
+                imgs: ['/canopies-2.jpg','/full-canopy-accessories.png', '/canopies-3.jpg','/canopy-tray.png', '/canopy-tray-2.png'],
+                blurb: 'Tough purpose built tray/canopy combos',
+                estPrice: 'AUD $10,000–$12,000',
+                lead: 'Depending on Stock. Can be built to custom order',
+                warranty: '1-yr components',
+                details: [
+                  '2.5mm 5052 marine-grade aluminium construction',
+                  '50×50 aluminium RHS strengthening',
+                  'Uni-strut roof channel, underbody toolboxes',
+                  'Integrated ~50L fresh water tank',
+                  'Jack-off canopy legs, heavy-duty mud flaps',
+                  'Central locking ready',
+                  'Full length trundle drawer',
+                  'Landcruiser 79 Series tail-lights',
+                ],
+                ratio: "4/3"
+              },
+              {
+                id: 'tray-only',
+                name: 'Aluminium Tray (Only).',
+                imgs: ['/canopies-3.jpg'],
+                blurb: 'Heavy-duty aluminium tray designed for strength, usability and style.',
+                estPrice: 'AUD $5,000–$6,000',
+                lead: 'In Stock. Or 8–10 weeks (custom-build-to-order)',
+                warranty: '2-yr structural',
+                details: [
+                  '2.5 mm 5052 marine-grade aluminium construction',
+                  '50×50 aluminium RHS bracing for strength without weight penalty',
+                  'Integrated under-body toolboxes (optional)',
+                  'Heavy-duty custom mud flaps included',
+                  'Designed for canopy integration or standalone use',
+                  'Powder-coated finish available in black or custom colours',
+                ],
+                ratio: "2/1"
+              },
+              {
+                id: 'jerry-holder',
+                name: 'Jerry Can Holder.',
+                imgs: ['/jerry-can-holder-1.jpg','/jerry-can-holder.png'],
+                blurb: 'Secure, powder-coated carrier.',
+                estPrice: 'AUD $120–$150',
+                lead: 'In stock',
+                warranty: '2-yr Structural',
+                details: [
+                  'Fits standard 20L jerry cans',
+                  'Powder-coated 5052 marine grade aluminium',
+                  'Light weight custom design',
+                  'Bolt-on installation with universal mounts',
+                  'Drainage cut-outs to prevent rust and water build-up',
+                ],
+              },
+              {
+                id: 'spare-wheel',
+                name: 'Spare Wheel Holder.',
+                imgs: ['/spare-wheel-holder-1.jpg'],
+                blurb: 'Robust mount for touring setups.',
+                estPrice: 'AUD $220–$300',
+                lead: 'In stock',
+                warranty: '1-yr components',
+                details: [
+                  'Adjustable PCD options',
+                  'High-vibration safe hardware',
+                  'Suits canopy/tray rear or side mounts',
+                ],
+              },
+              {
+                id: 'pantry',
+                name: 'Kitchen Pantry.',
+                imgs: ['/gallery-3.jpg', '/pantry-3.png','/pantry-2.png'],
+                blurb: 'Roof access for racks & awnings.',
+                estPrice: 'AUD $400–$500',
+                lead: 'In stock',
+                warranty: '1-yr components',
+                details: [
+                  'Matches canopy profile',
+                  'Non-slip rungs',
+                  'Bolt-on or rivnut mount options',
+                ],
+              },
+              {
+                id: 'fridge-surround',
+                name: 'Fridge Surround.',
+                imgs: ['/fridge-surround-rendered.png', '/fridge-surround-3.jpg', '/fridge-surround-bench-2.jpg', '/fridge-surround-4.jpg'],
+                blurb: '85L fridge surround with optional slide out bench.',
+                estPrice: 'AUD $500–$600',
+                lead: 'In stock',
+                warranty: '2-yr structural',
+                details: [
+                  'Silver or black (5052 marine grade aluminum)',
+                  'Engineered ventilation for maximum efficiency',
+                  'Integrated wood slide out bench (Optional)',
+                  'Custom built to suit the 85L fridges from all local brands',
+                  'Bolt-on or rivnut mount options',
+                ],
+              },
+              {
+                id: '900mm-light',
+                name: '900mm LED Lights.',
+                imgs: ['/900mm-light.png', '/light-2.png'],
+                blurb: 'Brighten up your work and camping with strip lights.',
+                estPrice: 'AUD $60–$90',
+                lead: 'In Stock',
+                warranty: '2-yr components',
+                details: [
+                  'Aluminum design',
+                  '5-way dimmable',
+                  'Multiple colour configurations for insect control',
+                  'Light-weight and strong',
+                  'Easy mounting and connection',
+                ],
+              },
+            ]}
+          />
+        </div>
+
+        {/* Canopies & Trays */}
         <section id="canopies-trays" className="bg-black text-white">
-          {/* Intro / Positioning */}
           <div className="mx-auto max-w-7xl px-6 py-20 md:py-28">
             <div className="grid md:grid-cols-2 gap-12 items-start">
               <div>
                 <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">Canopies & Trays</h2>
                 <p className="mt-5 text-gray-200 leading-relaxed">
                   Elevate canopies and trays combine smart design with robust construction. We use
-                  <span className="text-white font-semibold"> 2.5&nbsp;mm 5052 marine‑grade aluminium</span> and
+                  <span className="text-white font-semibold"> 2.5&nbsp;mm 5052 marine-grade aluminium</span> and
                   <span className="text-white font-semibold"> 50×50 aluminium RHS bracing</span> for strength without the weight penalty.
-                  Our integrated systems deliver real‑world practicality for remote touring and demanding trade work.
+                  Our integrated systems deliver real-world practicality for remote touring and demanding trade work.
                 </p>
-		<h2 className="mt-5 text-3xl md:text-4xl font-extrabold tracking-tight">Auto Electrical</h2>  
-		<p className="mt-4 text-gray-200 leading-relaxed">
-    		Expert touring and trade fitouts engineered for Australian conditions: lithium battery systems, solar & MPPT,
-    		central locking, diagnostics, and premium aluminium fabrication — all tailored to work seamlessly with our canopy
-		    and tray builds.
- 		 </p>
+                <h2 className="mt-5 text-3xl md:text-4xl font-extrabold tracking-tight">Auto Electrical</h2>
+                <p className="mt-4 text-gray-200 leading-relaxed">
+                  Expert touring and trade fitouts engineered for Australian conditions: lithium battery systems, solar & MPPT,
+                  central locking, diagnostics, and premium aluminium fabrication — all tailored to work seamlessly with our canopy
+                  and tray builds.
+                </p>
                 <div className="mt-6 text-sm text-gray-400">
                   Pricing for tray + canopy combos typically lands around
                   <span className="text-white font-semibold"> $11–12k</span> (without electrical fitout).
                 </div>
               </div>
 
-              {/* Feature list: bullets on mobile, cards on sm+ (single UL version) */}
               <div>
                 <ul className="list-disc list-inside space-y-1 text-white sm:list-none sm:grid sm:grid-cols-2 sm:gap-4">
                   {[
                     '2.5mm 5052 marine grade aluminium construction',
                     '50×50 aluminium RHS bracing for strength',
-		    'Full length under‑body trundle drawer',
+                    'Full length under-body trundle drawer',
                     'Integrated 50L fresh water tank',
                     'Canopy Fitouts (full custom battery management systems to suit your needs)',
                     '12V Accessories (central locking, solar, charging, lithium batteries)',
                     'Full length 900mm dimmable LED lights',
-                    'Jack‑off canopy legs',
+                    'Jack-off canopy legs',
                   ].map((f) => (
                     <li key={f} className="sm:border sm:border-white/10 sm:rounded-lg sm:p-4 sm:bg-white/[0.03]">
                       <span className="text-white">{f}</span>
@@ -190,194 +351,9 @@ export default function Home() {
             </div>
           </div>
 
-{/* Products */}
-<div className="mx-auto max-w-7xl px-6 py-16">
-  <h3 className="text-2xl font-bold mb-2">Products</h3>
-  <p className="text-sm text-gray-300 mb-6">
-    Tap a product for estimated pricing and details. Final prices depend on vehicle, options and install.
-  </p>
-
-  <ProductGrid
-    products={[
-      {
-        id: 'canopy',
-        name: 'Canopy 1200mm-1600mm.',
-        imgs: ['/canopies-1.jpg', '/full-canopy-fitout.jpg'],
-        blurb: '5052 aluminium, 50×50 bracing, central locking ready.',
-        estPrice: 'AUD $6,000–$8,000',
-        lead: 'Stock availiable or 8–10 weeks (custom build-to-order)',
-        warranty: '2-yr structural',
-        details: [
-          '2.5mm 5052 marine-grade aluminium construction',
-          '50×50 aluminium RHS strengthening',
-          'Uni-strut roof channel, underbody toolboxes',
-          '900mm adjustable LED lighting, central locking ready',
-          '12v and electrical solutions',
-          'Custom kitchen, draw and storage setups',
-        ],
-      },
-      {
-        id: 'electrical-fitout',
-        name: 'Electrical Fitout (Custom).',
-        imgs: [
-          '/auto-electrical-9.jpg', // cover
-          '/custom-enclosure.jpg','/fuse-blocks-and-outlets.jpg','/electrical-enclosure-4.jpg','/auto-electrical-1.jpg',
-          '/auto-electrical-2.jpg','/auto-electrical-8.jpg',
-        ],
-        blurb: 'Lithium, DC–DC, 12V, solar & distribution.',
-        estPrice: 'POA (from $2,500+)',
-        lead: '1-2 Weeks',
-        warranty: '2-yr auto-electrical',
-        details: [
-          'Victron/REDARC battery systems',
-          'BCDC/DC–DC, MPPT solar, AC chargers',
-          'Neat serviceable wiring & labeling',
-        ],
-        ratio: "4/3"
-      },
-      {
-        id: 'canopy-tray',
-        name: 'Canopy and Tray Combo.',
-        imgs: ['/canopies-2.jpg','/full-canopy-accessories.png', '/canopies-3.jpg','/canopy-tray.png', '/canopy-tray-2.png'],
-        blurb: 'Tough purpose built tray/canopy combos',
-        estPrice: 'AUD $10,000–$12,000',
-        lead: 'Depending on Stock. Can be built to custom order',
-        warranty: '1-yr components',
-        details: [
-          '2.5mm 5052 marine-grade aluminium construction',
-          '50×50 aluminium RHS strengthening',
-          'Uni-strut roof channel, underbody toolboxes',
-          'Integrated ~50L fresh water tank',
-          'Jack-off canopy legs, heavy-duty mud flaps',
-          'Central locking ready',
-	  'Full legth trundle draw',
-	  'Landcruiser 79 Series tail-lights',
-        ],
-        ratio: "4/3"
-      },
-      {
-        id: 'tray-only',
-        name: 'Aluminium Tray (Only).',
-        imgs: ['/canopies-3.jpg'],
-        blurb: 'Heavy-duty aluminium tray designed for strength, usability and style.',
-        estPrice: 'AUD $5,000–$6,000',
-        lead: 'In Stock. Or 8–10 weeks (custom-build-to-order)',
-        warranty: '2-yr structural',
-        details: [
-          '2.5 mm 5052 marine-grade aluminium construction',
-          '50×50 aluminium RHS bracing for strength without weight penalty',
-          'Integrated under-body toolboxes (optional)',
-          'Heavy-duty custom mud flaps included',
-          'Designed for canopy integration or standalone use',
-          'Powder-coated finish available in black or custom colours',
-        ],
-        ratio: "2/1"
-      },
-      {
-        id: 'jerry-holder',
-        name: 'Jerry Can Holder.',
-        imgs: [ '/jerry-can-holder-1.jpg','/jerry-can-holder.png'],
-        blurb: 'Secure, powder-coated carrier.',
-        Price: 'AUD $150',
-        lead: 'In stock',
-        warranty: '2-yr Structural',
-        details: [
-          'Fits standard 20L jerry cans',
-          'Powder-coated 5052 marine grade aluminium',
-	  'Light weight custom design',
-    	  'Bolt-on installation with universal mounts',
-    	  'Drainage cut-outs to prevent rust and water build-up',
-        ],
-      },
-      {
-        id: 'spare-wheel',
-        name: 'Spare Wheel Holder.',
-        imgs: ['/spare-wheel-holder-1.jpg'],
-        blurb: 'Robust mount for touring setups.',
-        Price: 'AUD $300',
-        lead: 'In stock',
-        warranty: '1-yr components',
-        details: [
-          'Adjustable PCD options',
-          'High-vibration safe hardware',
-          'Suits canopy/tray rear or side mounts',
-        ],
-      },
-      {
-        id: 'pantry',
-        name: 'Kitchen Pantry.',
-        imgs: ['/gallery-3.jpg', '/pantry-3.png','/pantry-2.png'],
-        blurb: 'Roof access for racks & awnings.',
-        Price: 'AUD $450',
-        lead: 'In stock',
-        warranty: '1-yr components',
-        details: [
-          'Matches canopy profile',
-          'Non-slip rungs',
-          'Bolt-on or rivnut mount options',
-        ],
-      },
-      {
-        id: 'fridge-surround',
-        name: 'Fridge Surround.',
-        imgs: ['/fridge-surround-rendered.png', '/fridge-surround-3.jpg', '/fridge-surround-bench-2.jpg', '/fridge-surround-4.jpg'],
-        blurb: '85L fridge surround with optional slide out bench.',
-        Price: 'AUD $600',
-        lead: 'In stock',
-        warranty: '2-yr structural',
-        details: [
-          'Silver or black (5052 marine grade aluminum)',
-          'Engineered ventilation for maximum efficiency',
-	  'Integrated wood slide out bench (Optional)',
-	  'Custom built to suit the 85L fridges from all local brands',
-          'Bolt-on or rivnut mount options',
-        ],
-      },
-      {
-        id: '900mm-light',
-        name: '900mm LED Lights.',
-        imgs: ['/900mm-light.png', '/light-2.png', ],
-        blurb: 'Brighten up your work and camping with strip lights.',
-        Price: '$80',
-        lead: 'In Stock',
-        warranty: '2-yr components',
-        details: [
-          'Aluminum design',
-          '5-way dimmable',
-	  'Multiple colour configurations for insect control',
-          'Light-weight and strong',
-	  'Easy mounting and connection',
-        ],
-      },
-    ]}
-  />
-</div>
-
-          {/* Warranty & Specs */}
-          <div className="bg-neutral-950/60">
-            <div className="mx-auto max-w-7xl px-6 py-16 md:py-20 text-gray-200 grid md:grid-cols-2 gap-12 items-start">
-              <div>
-                <h3 className="text-2xl font-bold text白 mb-4">Warranty</h3>
-                <ul className="grid sm:grid-cols-2 gap-3 text-sm">
-                  <li className="border border-white/10 rounded p-3 bg-white/[0.03]"><span className="text-white font-semibold">2‑year structural warranty</span> on fabricated canopies & trays</li>
-                  <li className="border border-white/10 rounded p-3 bg-white/[0.03]"><span className="text-white font-semibold">2‑year auto‑electrical warranty</span></li>
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-4">Popular Add‑Ons</h3>
-                <ul className="grid sm:grid-cols-2 gap-3 text-sm">
-                  {['Fridge units','Pantry & drawer modules','Water pumps & plumbing','LED scene/work lights','Central locking kits','Solar + 12V fitout'].map(x => (
-                    <li key={x} className="border border-white/10 rounded p-3 bg-white/[0.03]">{x}</li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* CTA */}
           <div className="mx-auto max-w-4xl px-6 py-20 text-center">
             <h3 className="text-3xl font-extrabold mb-3">Ready to design your canopy & tray?</h3>
-            <p className="text-gray-300 mb-8">Tell us your vehicle, usage and must‑haves and we’ll spec a package that fits your budget and timeline.</p>
+            <p className="text-gray-300 mb-8">Tell us your vehicle, usage and must-haves and we’ll spec a package that fits your budget and timeline.</p>
             <a href="#contact" className="inline-block border border-white px-6 py-3 rounded hover:bg-white hover:text-black transition">Get a Quote</a>
           </div>
         </section>
@@ -393,12 +369,12 @@ export default function Home() {
                   author: 'Jake T., Sunshine Coast'
                 },
                 {
-                  quote: "Elevate's attention to detail is unmatched. Their electrical fitout is clean, intuitive, and reliable even in the outback.",
-                  author: 'Sarah L., WA'
+                  quote: "Couple of legends doing good things! Got a dual battery and inverter set up for my work 4x4. Great service and well priced. I’d use them again.",
+                  author: 'Kobi Lynn, Sunshine Coast'
                 },
                 {
-                  quote: 'Couldn’t be happier. Great communication, a killer result, and their team even handled the extra mods we wanted.',
-                  author: 'Mitch D., Brisbane'
+                  quote: 'Huge thanks to the team at Elevate! The canopy is top quality, super practical, and looks unreal.',
+                  author: 'Ben A., Sunshine Coast'
                 }
               ].map((t, i) => (
                 <figure key={i} className="rounded-2xl bg-white p-6 shadow">
@@ -425,7 +401,16 @@ export default function Home() {
               </label>
               <label className="text-sm font-medium text-gray-700">
                 Phone
-                <input type="tel" name="phone" placeholder="+61 4xx xxx xxx" required pattern="^\\+?61\\s?4[0-9]{2}\\s?[0-9]{3}\\s?[0-9]{3}$" className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black/70 focus:border-black/70" inputMode="tel" autoComplete="tel" />
+                <input
+                  type="tel"
+                  name="phone"
+                  placeholder="+61 4xx xxx xxx"
+                  required
+                  pattern="^\+?61\s?4[0-9]{2}\s?[0-9]{3}\s?[0-9]{3}$"
+                  className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black/70 focus:border-black/70"
+                  inputMode="tel"
+                  autoComplete="tel"
+                />
               </label>
               <label className="text-sm font-medium text-gray-700">
                 What are you interested in?
@@ -474,7 +459,7 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Footer */}
+ {/* Footer */}
       <footer className="bg-black text-gray-300 border-t border-white/10">
         <div className="mx-auto max-w-7xl px-6 py-14 grid md:grid-cols-4 gap-10">
           <div>
@@ -483,20 +468,32 @@ export default function Home() {
               <span className="text-lg font-bold text-white">Elevate 4x4 Touring Solutions</span>
             </div>
             <p className="text-sm text-gray-400">
-              Innovative, highly‑functional custom touring solutions at competitive pricing. Sunshine Coast, QLD.
+              Innovative, highly-functional custom touring solutions at competitive pricing. Sunshine Coast, QLD.
             </p>
+            {/* ✅ Social links */}
+            <div className="flex gap-4 mt-4">
+              <a href="https://www.facebook.com/profile.php?id=61580900101247" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                Facebook
+              </a>
+              <a href="https://www.instagram.com/elevate4x4/" target="_blank" rel="noopener noreferrer" className="hover:text-white">
+                Instagram
+              </a>
+            </div>
           </div>
+
           <div>
             <h4 className="font-semibold mb-3">Company</h4>
             <ul className="space-y-2 text-sm">
               <li><a href="#services" className="hover:text-white">Home</a></li>
               <li><a href="#about" className="hover:text-white">About Us</a></li>
-              <li><a href="#canopies-trays" className="hover:text-white">Canopies & Trays</a></li>
+              {/* ✅ Updated to page link */}
+              <li><Link href="/canopies-trays" className="hover:text-white">Canopies & Trays</Link></li>
               <li><a href="#testimonials" className="hover:text-white">Testimonials</a></li>
               <li><a href="#contact" className="hover:text-white">Get a Quote</a></li>
               <li><Link href="/auto-electrical" className="hover:text-white">Auto Electrical Services</Link></li>
             </ul>
           </div>
+
           <div>
             <h4 className="font-semibold mb-3">Contact</h4>
             <ul className="space-y-2 text-sm">
@@ -506,6 +503,7 @@ export default function Home() {
               <li>Mon–Fri: 8:00–4:00</li>
             </ul>
           </div>
+
           <div>
             <h4 className="font-semibold mb-3">Legal</h4>
             <ul className="space-y-2 text-sm">
