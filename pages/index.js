@@ -365,8 +365,8 @@ export default function Home() {
             <div className="mt-10 grid gap-6 sm:gap-8 md:grid-cols-3">
               {[
                 {
-                  quote: 'The best custom tray and canopy I’ve ever owned — bulletproof build quality and the electrics work flawlessly. 10/10.',
-                  author: 'Jake T., Sunshine Coast'
+                  quote: 'These legends supplied and fitted some of their strip lights in my canopy and I couldn't be happier with the result. Great service and very neat install. 10/10 reccommend',
+                  author: 'Drew Pitcher., Sunshine Coast'
                 },
                 {
                   quote: "Couple of legends doing good things! Got a dual battery and inverter set up for my work 4x4. Great service and well priced. I’d use them again.",
