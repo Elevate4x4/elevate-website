@@ -365,12 +365,12 @@ export default function Home() {
             <div className="mt-10 grid gap-6 sm:gap-8 md:grid-cols-3">
               {[
                 {
-                  quote: 'These legends supplied and fitted some of their strip lights in my canopy and I couldn't be happier with the result. Great service and very neat install. 10/10 reccommend',
+                  quote: 'These legends supplied and fitted some of their strip lights in my canopy and I couldn’dt be happier with the result. Great service and very neat install. 10/10 reccommend.',
                   author: 'Drew Pitcher., Sunshine Coast'
                 },
                 {
                   quote: "Couple of legends doing good things! Got a dual battery and inverter set up for my work 4x4. Great service and well priced. I’d use them again.",
-                  author: 'Kobi Lynn, Sunshine Coast'
+                  author: 'Kobi Lynn., Sunshine Coast'
                 },
                 {
                   quote: 'Huge thanks to the team at Elevate! The canopy is top quality, super practical, and looks unreal.',
