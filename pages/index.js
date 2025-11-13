@@ -406,7 +406,7 @@ export default function Home() {
                   name="phone"
                   placeholder="+61 4xx xxx xxx"
                   required
-                  pattern="^\+?61\s?4[0-9]{2}\s?[0-9]{3}\s?[0-9]{3}$"
+                  pattern="^(0|61|\+61)[0-9\s]{6,}$"
                   className="mt-1 w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-black/70 focus:border-black/70"
                   inputMode="tel"
                   autoComplete="tel"
