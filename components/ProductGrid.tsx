@@ -38,21 +38,19 @@ export default function ProductGrid({ products }: { products: Product[] }) {
     }
   }
 
-  const ratioClass = (p: Product) => (p.ratio === "2/1" ? "aspect-[2/1]" : "aspect-[4/3]")
-
   return (
     <div className="w-full">
       {/* Cards */}
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((p) => (
-          <li key={p.id}>
+          <li key={p.id} className="flex flex-col">
             <button
               type="button"
               onClick={() => setOpenId(p.id)}
-              className="group w-full text-left rounded-2xl bg-neutral-900 ring-1 ring-white/10 hover:ring-white/20 transition"
+              className="group flex flex-col w-full h-full text-left rounded-2xl bg-neutral-900 ring-1 ring-white/10 hover:ring-white/20 transition"
             >
-              {/* Card image (cover) */}
-              <div className={`relative overflow-hidden rounded-t-2xl bg-neutral-950 ${ratioClass(p)}`}>
+              {/* Card image — all locked to 4/3 so every card is the same height */}
+              <div className="relative overflow-hidden rounded-t-2xl bg-neutral-950 aspect-[4/3]">
                 <Image
                   src={p.imgs[0]}
                   alt={p.name}
@@ -64,8 +62,8 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                 />
               </div>
 
-              {/* Content */}
-              <div className="p-5">
+              {/* Content — grows to fill remaining card height */}
+              <div className="flex flex-col flex-1 p-5">
                 <div className="flex items-start justify-between gap-3">
                   <h4 className="text-white font-semibold text-base md:text-lg">{p.name}</h4>
                   <span className="shrink-0 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs text-white/80">
@@ -79,7 +77,7 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                   {p.warranty && <span className="rounded-md border border-white/10 bg-white/5 px-2 py-1">Warranty: {p.warranty}</span>}
                 </div>
 
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-auto pt-4 flex items-center justify-between">
                   <span className="text-xs text-white/50">Click for details</span>
                   <span className="text-white/80 group-hover:text-white">›</span>
                 </div>

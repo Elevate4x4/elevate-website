@@ -69,8 +69,8 @@ export default function Navbar() {
       </div>
 
       {/* Desktop nav (center-aligned) */}
-      <div className="hidden sm:flex flex-col items-center">
-        <div className="py-4">{Logo}</div>
+      <div className="hidden sm:flex flex-col w-full">
+        <div className="py-4 flex justify-center">{Logo}</div>
         <div className="flex justify-center space-x-6 font-semibold text-base pb-4">
           <Link href="/#services" className="hover:underline transition-colors">Our Services</Link>
           <Link href="/#about" className="hover:underline transition-colors">About Us</Link>
