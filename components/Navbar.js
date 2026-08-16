@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 
-export default function Navbar() {
+function Navbar() {
   const [open, setOpen] = useState(false)
 
   const Logo = (
@@ -104,3 +104,5 @@ export default function Navbar() {
     </nav>
   )
 }
+
+export default memo(Navbar)

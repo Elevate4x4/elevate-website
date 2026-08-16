@@ -1,9 +1,15 @@
+import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Link from 'next/link'
 
 export default function Policies() {
   return (
     <>
+      <Head>
+        <title>Warranty, Privacy & Terms | Elevate 4x4 Touring Solutions</title>
+        <meta name="description" content="Warranty policy, privacy policy and terms & conditions of sale for Elevate 4x4 Touring Solutions." />
+        <link rel="canonical" href="https://www.elevate4x4.com.au/policies" />
+      </Head>
       <Navbar />
       <main className="bg-white text-black">
         {/* Hero */}

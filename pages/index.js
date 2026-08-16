@@ -6,6 +6,150 @@ import Navbar from '../components/Navbar'
 import Link from 'next/link'
 import ProductGrid from '@/components/ProductGrid'
 
+const JSON_LD = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Elevate 4x4 Touring Solutions',
+  image: '/og-cover.jpg',
+  url: 'https://www.elevate4x4.com.au/',
+  telephone: '+61 403 903 461',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'U13 67-73 Buderim Ave',
+    addressLocality: 'Mooloolaba',
+    addressRegion: 'QLD',
+    addressCountry: 'AU'
+  },
+  areaServed: ['Sunshine Coast', 'Queensland', 'Brisbane', 'Gympie', 'Noosa', 'Moreton Bay'],
+  description: 'Custom auto electrical, ute trays and canopies on the Sunshine Coast.',
+  sameAs: []
+};
+
+const TRUST_ITEMS = [
+  { num: '2yr', label: 'Structural & Electrical Warranty' },
+  { num: '15+', label: 'Years Combined Experience' },
+  { num: '1–2wk', label: 'Electrical Turnaround' },
+  { num: 'Local', label: 'Mooloolaba, Sunshine Coast' },
+];
+
+const PRODUCTS = [
+  {
+    id: 'canopy',
+    name: 'Canopy 1200mm-1600mm',
+    imgs: ['/canopies-1.jpg', '/full-canopy-fitout.jpg'],
+    blurb: '5052 aluminium, 50×50 bracing, central locking ready.',
+    estPrice: 'AUD $6,000–$8,000',
+    lead: 'Stock available now · Custom builds 3 months',
+    warranty: '2-yr structural',
+    details: ['2.5mm 5052 marine-grade aluminium construction', '50×50 aluminium RHS strengthening', 'Uni-strut roof channel, underbody toolboxes', '900mm adjustable LED lighting, central locking ready', '12V and electrical solutions', 'Custom kitchen, drawer and storage setups'],
+  },
+  {
+    id: 'electrical-fitout',
+    name: 'Electrical Fitout (Custom)',
+    imgs: ['/auto-electrical-9.jpg', '/custom-enclosure.jpg', '/fuse-blocks-and-outlets.jpg', '/electrical-enclosure-4.jpg', '/auto-electrical-1.jpg', '/auto-electrical-2.jpg', '/auto-electrical-8.jpg'],
+    blurb: 'Lithium, DC–DC, 12V, solar & distribution.',
+    estPrice: 'From $2,500+',
+    lead: '1–2 Weeks',
+    warranty: '2-yr auto-electrical',
+    details: ['Victron/REDARC battery systems', 'BCDC/DC–DC, MPPT solar, AC chargers', 'Neat serviceable wiring & labelling'],
+    ratio: "4/3"
+  },
+  {
+    id: 'canopy-tray',
+    name: 'Canopy and Tray Combo',
+    imgs: ['/canopies-2.jpg', '/full-canopy-accessories.png', '/canopies-3.jpg', '/canopy-tray.png', '/canopy-tray-2.png'],
+    blurb: 'Tough purpose-built tray/canopy combos.',
+    estPrice: 'AUD $10,000–$12,000',
+    lead: 'Stock available now · Custom builds 3 months',
+    warranty: '2-yr structural',
+    details: ['2.5mm 5052 marine-grade aluminium construction', '50×50 aluminium RHS strengthening', 'Uni-strut roof channel, underbody toolboxes', 'Integrated ~50L fresh water tank', 'Jack-off canopy legs, heavy-duty mud flaps', 'Central locking ready', 'Full length trundle drawer', 'Landcruiser 79 Series tail-lights'],
+    ratio: "4/3"
+  },
+  {
+    id: 'tray-only',
+    name: 'Aluminium Tray (Only)',
+    imgs: ['/canopies-3.jpg'],
+    blurb: 'Heavy-duty aluminium tray designed for strength, usability and style.',
+    estPrice: 'AUD $5,000–$6,000',
+    lead: 'Stock available now · Custom builds 3 months',
+    warranty: '2-yr structural',
+    details: ['2.5mm 5052 marine-grade aluminium construction', '50×50 aluminium RHS bracing for strength without weight penalty', 'Integrated under-body toolboxes (optional)', 'Heavy-duty custom mud flaps included', 'Designed for canopy integration or standalone use', 'Powder-coated finish available in black or custom colours'],
+    ratio: "2/1"
+  },
+  {
+    id: 'jerry-holder',
+    name: 'Jerry Can Holder',
+    imgs: ['/jerry-can-holder-1.jpg', '/jerry-can-holder.png'],
+    blurb: 'Secure, powder-coated carrier.',
+    estPrice: 'AUD $120–$150',
+    lead: 'In stock',
+    warranty: '2-yr structural',
+    details: ['Fits standard 20L jerry cans', 'Powder-coated 5052 marine grade aluminium', 'Lightweight custom design', 'Bolt-on installation with universal mounts', 'Drainage cut-outs to prevent rust and water build-up'],
+  },
+  {
+    id: 'spare-wheel',
+    name: 'Spare Wheel Holder',
+    imgs: ['/spare-wheel-holder-1.jpg'],
+    blurb: 'Robust mount for touring setups.',
+    estPrice: 'AUD $220–$300',
+    lead: 'In stock',
+    warranty: '2-yr structural',
+    details: ['Adjustable PCD options', 'High-vibration safe hardware', 'Suits canopy/tray rear or side mounts'],
+  },
+  {
+    id: 'pantry',
+    name: 'Kitchen Pantry',
+    imgs: ['/gallery-3.jpg', '/pantry-3.png', '/pantry-2.png'],
+    blurb: 'Slide-out camp kitchen pantry for serious tourers.',
+    estPrice: 'AUD $400–$500',
+    lead: 'In stock',
+    warranty: '2-yr structural',
+    details: ['Matches canopy profile', 'Non-slip rungs', 'Bolt-on or rivnut mount options'],
+  },
+  {
+    id: 'fridge-surround',
+    name: 'Fridge Surround',
+    imgs: ['/fridge-surround-rendered.png', '/fridge-surround-3.jpg', '/fridge-surround-bench-2.jpg', '/fridge-surround-4.jpg'],
+    blurb: '85L fridge surround with optional slide-out bench.',
+    estPrice: 'AUD $500–$600',
+    lead: 'In stock',
+    warranty: '2-yr structural',
+    details: ['Silver or black (5052 marine grade aluminium)', 'Engineered ventilation for maximum efficiency', 'Integrated wood slide-out bench (optional)', 'Custom built to suit 85L fridges from all local brands', 'Bolt-on or rivnut mount options'],
+  },
+  {
+    id: '900mm-light',
+    name: '900mm LED Lights',
+    imgs: ['/900mm-light.png', '/light-2.png'],
+    blurb: 'Dimmable strip lights for work and camping.',
+    estPrice: 'AUD $60–$90',
+    lead: 'In stock',
+    warranty: '2-yr components',
+    details: ['Aluminium design', '5-way dimmable', 'Multiple colour configurations for insect control', 'Lightweight and strong', 'Easy mounting and connection'],
+  },
+];
+
+const CANOPY_FEATURES = ['Marine-grade 5052 aluminium', '50×50 RHS bracing', '50L fresh water tank', 'Central locking ready', 'Full-length trundle drawer', '900mm dimmable LEDs'];
+const ELECTRICAL_FEATURES = ['Dual battery systems', 'Lithium & DC–DC', 'MPPT solar', 'Canopy 12V fitouts', 'Central locking', 'Diagnostics & repair'];
+
+const TESTIMONIALS = [
+  { quote: "These legends supplied and fitted some of their strip lights in my canopy and I couldn't be happier with the result. Great service and very neat install. 10/10 recommend.", author: 'Drew Pitcher', location: 'Sunshine Coast' },
+  { quote: "Couple of legends doing good things! Got a dual battery and inverter set up for my work 4x4. Great service and well priced. I'd use them again.", author: 'Kobi Lynn', location: 'Sunshine Coast' },
+  { quote: "Reached out after seeing a Facebook ad. They were more than helpful in finding the right solution for me. Can't fault their quality or service. Have recommended them to multiple mates.", author: 'Riley Korac', location: 'Sunshine Coast' },
+];
+
+const CONTACT_ITEMS = [
+  { label: 'Phone', value: '+61 403 903 461', href: 'tel:+61403903461' },
+  { label: 'Email', value: 'sales@elevate4x4.com.au', href: 'mailto:sales@elevate4x4.com.au' },
+  { label: 'Hours', value: 'Mon–Fri · 8:00am – 4:00pm', href: null },
+  { label: 'Location', value: 'Mooloolaba, Sunshine Coast QLD', href: null },
+];
+
+const FOOTER_COLUMNS = [
+  { heading: 'Pages', links: [{ label: 'About Us', href: '#about' }, { label: 'Canopies & Trays', href: '/canopies-trays' }, { label: 'Auto Electrical', href: '/auto-electrical' }, { label: 'Get a Quote', href: '#contact' }] },
+  { heading: 'Contact', links: [{ label: '+61 403 903 461', href: 'tel:+61403903461' }, { label: 'sales@elevate4x4.com.au', href: 'mailto:sales@elevate4x4.com.au' }, { label: 'Mon–Fri · 8am–4pm', href: null }] },
+  { heading: 'Legal', links: [{ label: 'ABN 57 850 251 59', href: null }, { label: 'Warranty Policy', href: '/policies#warranty' }, { label: 'Privacy Policy', href: '/policies#privacy' }, { label: 'Terms & Conditions', href: '/policies#terms' }] },
+];
+
 export default function Home() {
   const [status, setStatus] = useState({ submitting: false, succeeded: false, error: "" });
 
@@ -33,25 +177,6 @@ export default function Home() {
     }
   }
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: 'Elevate 4x4 Touring Solutions',
-    image: '/og-cover.jpg',
-    url: 'https://www.elevate4x4.com.au/',
-    telephone: '+61 403 903 461',
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'U13 67-73 Buderim Ave',
-      addressLocality: 'Mooloolaba',
-      addressRegion: 'QLD',
-      addressCountry: 'AU'
-    },
-    areaServed: ['Sunshine Coast', 'Queensland', 'Brisbane', 'Gympie', 'Noosa', 'Moreton Bay'],
-    description: 'Custom auto electrical, ute trays and canopies on the Sunshine Coast.',
-    sameAs: []
-  };
-
   return (
     <>
       <Head>
@@ -63,7 +188,7 @@ export default function Home() {
         <meta property="og:image" content="/og-cover.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="canonical" href="https://www.elevate4x4.com.au/" />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
       </Head>
 
       {/* Fixed Navbar */}
@@ -121,12 +246,7 @@ export default function Home() {
         <section className="bg-neutral-950 border-y border-white/10">
           <div className="mx-auto max-w-7xl px-6 py-8">
             <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
-              {[
-                { num: '2yr', label: 'Structural & Electrical Warranty' },
-                { num: '15+', label: 'Years Combined Experience' },
-                { num: '1–2wk', label: 'Electrical Turnaround' },
-                { num: 'Local', label: 'Mooloolaba, Sunshine Coast' },
-              ].map((item) => (
+              {TRUST_ITEMS.map((item) => (
                 <div key={item.num} className="flex flex-col items-center md:items-start px-6 py-4 first:pl-0">
                   <span className="trust-num text-white">{item.num}</span>
                   <span className="text-xs text-white/40 tracking-widest uppercase mt-1">{item.label}</span>
@@ -180,103 +300,7 @@ export default function Home() {
                 Tap any product for pricing, lead times and inclusions.
               </p>
             </div>
-            <ProductGrid
-              products={[
-                {
-                  id: 'canopy',
-                  name: 'Canopy 1200mm-1600mm',
-                  imgs: ['/canopies-1.jpg', '/full-canopy-fitout.jpg'],
-                  blurb: '5052 aluminium, 50×50 bracing, central locking ready.',
-                  estPrice: 'AUD $6,000–$8,000',
-                  lead: 'Stock available now · Custom builds 3 months',
-                  warranty: '2-yr structural',
-                  details: ['2.5mm 5052 marine-grade aluminium construction', '50×50 aluminium RHS strengthening', 'Uni-strut roof channel, underbody toolboxes', '900mm adjustable LED lighting, central locking ready', '12V and electrical solutions', 'Custom kitchen, drawer and storage setups'],
-                },
-                {
-                  id: 'electrical-fitout',
-                  name: 'Electrical Fitout (Custom)',
-                  imgs: ['/auto-electrical-9.jpg', '/custom-enclosure.jpg', '/fuse-blocks-and-outlets.jpg', '/electrical-enclosure-4.jpg', '/auto-electrical-1.jpg', '/auto-electrical-2.jpg', '/auto-electrical-8.jpg'],
-                  blurb: 'Lithium, DC–DC, 12V, solar & distribution.',
-                  estPrice: 'From $2,500+',
-                  lead: '1–2 Weeks',
-                  warranty: '2-yr auto-electrical',
-                  details: ['Victron/REDARC battery systems', 'BCDC/DC–DC, MPPT solar, AC chargers', 'Neat serviceable wiring & labelling'],
-                  ratio: "4/3"
-                },
-                {
-                  id: 'canopy-tray',
-                  name: 'Canopy and Tray Combo',
-                  imgs: ['/canopies-2.jpg', '/full-canopy-accessories.png', '/canopies-3.jpg', '/canopy-tray.png', '/canopy-tray-2.png'],
-                  blurb: 'Tough purpose-built tray/canopy combos.',
-                  estPrice: 'AUD $10,000–$12,000',
-                  lead: 'Stock available now · Custom builds 3 months',
-                  warranty: '2-yr structural',
-                  details: ['2.5mm 5052 marine-grade aluminium construction', '50×50 aluminium RHS strengthening', 'Uni-strut roof channel, underbody toolboxes', 'Integrated ~50L fresh water tank', 'Jack-off canopy legs, heavy-duty mud flaps', 'Central locking ready', 'Full length trundle drawer', 'Landcruiser 79 Series tail-lights'],
-                  ratio: "4/3"
-                },
-                {
-                  id: 'tray-only',
-                  name: 'Aluminium Tray (Only)',
-                  imgs: ['/canopies-3.jpg'],
-                  blurb: 'Heavy-duty aluminium tray designed for strength, usability and style.',
-                  estPrice: 'AUD $5,000–$6,000',
-                  lead: 'Stock available now · Custom builds 3 months',
-                  warranty: '2-yr structural',
-                  details: ['2.5mm 5052 marine-grade aluminium construction', '50×50 aluminium RHS bracing for strength without weight penalty', 'Integrated under-body toolboxes (optional)', 'Heavy-duty custom mud flaps included', 'Designed for canopy integration or standalone use', 'Powder-coated finish available in black or custom colours'],
-                  ratio: "2/1"
-                },
-                {
-                  id: 'jerry-holder',
-                  name: 'Jerry Can Holder',
-                  imgs: ['/jerry-can-holder-1.jpg', '/jerry-can-holder.png'],
-                  blurb: 'Secure, powder-coated carrier.',
-                  estPrice: 'AUD $120–$150',
-                  lead: 'In stock',
-                  warranty: '2-yr structural',
-                  details: ['Fits standard 20L jerry cans', 'Powder-coated 5052 marine grade aluminium', 'Lightweight custom design', 'Bolt-on installation with universal mounts', 'Drainage cut-outs to prevent rust and water build-up'],
-                },
-                {
-                  id: 'spare-wheel',
-                  name: 'Spare Wheel Holder',
-                  imgs: ['/spare-wheel-holder-1.jpg'],
-                  blurb: 'Robust mount for touring setups.',
-                  estPrice: 'AUD $220–$300',
-                  lead: 'In stock',
-                  warranty: '2-yr structural',
-                  details: ['Adjustable PCD options', 'High-vibration safe hardware', 'Suits canopy/tray rear or side mounts'],
-                },
-                {
-                  id: 'pantry',
-                  name: 'Kitchen Pantry',
-                  imgs: ['/gallery-3.jpg', '/pantry-3.png', '/pantry-2.png'],
-                  blurb: 'Slide-out camp kitchen pantry for serious tourers.',
-                  estPrice: 'AUD $400–$500',
-                  lead: 'In stock',
-                  warranty: '2-yr structural',
-                  details: ['Matches canopy profile', 'Non-slip rungs', 'Bolt-on or rivnut mount options'],
-                },
-                {
-                  id: 'fridge-surround',
-                  name: 'Fridge Surround',
-                  imgs: ['/fridge-surround-rendered.png', '/fridge-surround-3.jpg', '/fridge-surround-bench-2.jpg', '/fridge-surround-4.jpg'],
-                  blurb: '85L fridge surround with optional slide-out bench.',
-                  estPrice: 'AUD $500–$600',
-                  lead: 'In stock',
-                  warranty: '2-yr structural',
-                  details: ['Silver or black (5052 marine grade aluminium)', 'Engineered ventilation for maximum efficiency', 'Integrated wood slide-out bench (optional)', 'Custom built to suit 85L fridges from all local brands', 'Bolt-on or rivnut mount options'],
-                },
-                {
-                  id: '900mm-light',
-                  name: '900mm LED Lights',
-                  imgs: ['/900mm-light.png', '/light-2.png'],
-                  blurb: 'Dimmable strip lights for work and camping.',
-                  estPrice: 'AUD $60–$90',
-                  lead: 'In stock',
-                  warranty: '2-yr components',
-                  details: ['Aluminium design', '5-way dimmable', 'Multiple colour configurations for insect control', 'Lightweight and strong', 'Easy mounting and connection'],
-                },
-              ]}
-            />
+            <ProductGrid products={PRODUCTS} />
           </div>
         </section>
 
@@ -291,7 +315,7 @@ export default function Home() {
                   Smart design meets robust construction. We use <span className="text-white font-normal">2.5mm 5052 marine-grade aluminium</span> and <span className="text-white font-normal">50×50 RHS bracing</span> — strength without the weight penalty.
                 </p>
                 <ul className="grid grid-cols-2 gap-3 mb-8">
-                  {['Marine-grade 5052 aluminium', '50×50 RHS bracing', '50L fresh water tank', 'Central locking ready', 'Full-length trundle drawer', '900mm dimmable LEDs'].map(f => (
+                  {CANOPY_FEATURES.map(f => (
                     <li key={f} className="text-white/55 text-sm pl-3 border-l border-white/10 font-light">{f}</li>
                   ))}
                 </ul>
@@ -306,7 +330,7 @@ export default function Home() {
                   Lithium battery systems, solar & MPPT, central locking, diagnostics, and clean wiring — all tailored to work seamlessly with our canopy and tray builds.
                 </p>
                 <ul className="grid grid-cols-2 gap-3 mb-8">
-                  {['Dual battery systems', 'Lithium & DC–DC', 'MPPT solar', 'Canopy 12V fitouts', 'Central locking', 'Diagnostics & repair'].map(f => (
+                  {ELECTRICAL_FEATURES.map(f => (
                     <li key={f} className="text-white/55 text-sm pl-3 border-l border-white/10 font-light">{f}</li>
                   ))}
                 </ul>
@@ -333,11 +357,7 @@ export default function Home() {
               </div>
             </div>
             <div className="grid gap-px md:grid-cols-3 bg-white/10">
-              {[
-                { quote: "These legends supplied and fitted some of their strip lights in my canopy and I couldn't be happier with the result. Great service and very neat install. 10/10 recommend.", author: 'Drew Pitcher', location: 'Sunshine Coast' },
-                { quote: "Couple of legends doing good things! Got a dual battery and inverter set up for my work 4x4. Great service and well priced. I'd use them again.", author: 'Kobi Lynn', location: 'Sunshine Coast' },
-                { quote: "Reached out after seeing a Facebook ad. They were more than helpful in finding the right solution for me. Can't fault their quality or service. Have recommended them to multiple mates.", author: 'Riley Korac', location: 'Sunshine Coast' },
-              ].map((t, i) => (
+              {TESTIMONIALS.map((t, i) => (
                 <figure key={i} className="bg-neutral-950 p-10 flex flex-col justify-between min-h-64">
                   <blockquote className="text-white/60 leading-relaxed font-light text-sm">"{t.quote}"</blockquote>
                   <figcaption className="mt-8 pt-6 border-t border-white/10">
@@ -372,12 +392,7 @@ export default function Home() {
                   <p className="text-yellow-400 text-xs tracking-widest uppercase font-semibold mb-1">⏱ Current Lead Time</p>
                   <p className="text-white/70 text-sm font-light"><span className="text-white font-normal">Custom-built canopies</span> are currently running a <span className="text-white font-normal">3-month wait</span>. Stock canopies are available now with no wait. Get in touch early to secure your spot in the build queue.</p>
                 </div>
-                {[
-                  { label: 'Phone', value: '+61 403 903 461', href: 'tel:+61403903461' },
-                  { label: 'Email', value: 'sales@elevate4x4.com.au', href: 'mailto:sales@elevate4x4.com.au' },
-                  { label: 'Hours', value: 'Mon–Fri · 8:00am – 4:00pm', href: null },
-                  { label: 'Location', value: 'Mooloolaba, Sunshine Coast QLD', href: null },
-                ].map(item => (
+                {CONTACT_ITEMS.map(item => (
                   <div key={item.label} className="flex gap-8 py-4 border-b border-white/10">
                     <span className="text-white/35 text-xs tracking-widest uppercase w-20 pt-0.5 shrink-0">{item.label}</span>
                     {item.href
@@ -465,11 +480,7 @@ export default function Home() {
               <a href="https://www.instagram.com/elevate4x4/" target="_blank" rel="noopener noreferrer" className="text-xs tracking-widest uppercase hover:text-white transition">Instagram</a>
             </div>
           </div>
-          {[
-            { heading: 'Pages', links: [{ label: 'About Us', href: '#about' }, { label: 'Canopies & Trays', href: '/canopies-trays' }, { label: 'Auto Electrical', href: '/auto-electrical' }, { label: 'Get a Quote', href: '#contact' }] },
-            { heading: 'Contact', links: [{ label: '+61 403 903 461', href: 'tel:+61403903461' }, { label: 'sales@elevate4x4.com.au', href: 'mailto:sales@elevate4x4.com.au' }, { label: 'Mon–Fri · 8am–4pm', href: null }] },
-            { heading: 'Legal', links: [{ label: 'ABN 57 850 251 59', href: null }, { label: 'Warranty Policy', href: '/policies#warranty' }, { label: 'Privacy Policy', href: '/policies#privacy' }, { label: 'Terms & Conditions', href: '/policies#terms' }] },
-          ].map(col => (
+          {FOOTER_COLUMNS.map(col => (
             <div key={col.heading}>
               <div className="text-xs tracking-widest uppercase text-white/25 mb-4">{col.heading}</div>
               <ul className="space-y-3">

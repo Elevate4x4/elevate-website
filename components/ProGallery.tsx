@@ -1,6 +1,6 @@
 
 import Image from "next/image"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { memo, useCallback, useEffect, useMemo, useState } from "react"
 
 type GalleryImage = {
   src: string
@@ -10,7 +10,7 @@ type GalleryImage = {
 
 type Ratio = "16/9" | "3/2" | "4/3" | "1/1"
 
-export default function ProGallery({
+function ProGallery({
   images,
   ratio = "3/2",
   className = "",
@@ -163,3 +163,5 @@ export default function ProGallery({
     </div>
   )
 }
+
+export default memo(ProGallery)
