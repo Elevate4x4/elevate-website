@@ -134,6 +134,8 @@ export default function CanopiesTrays() {
           <ProGallery
             ratio="4/3"
             images={[
+              { src: '/canopies-4.jpg' },
+              { src: '/canopies-5.jpg' },
               { src: '/canopies-1.jpg' },
               { src: '/auto-electrical-9.jpg' },
               { src: '/gallery-3.jpg' },
