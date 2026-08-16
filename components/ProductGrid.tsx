@@ -1,5 +1,5 @@
 // components/ProductGrid.tsx
-import { useMemo, useState, useEffect } from "react"
+import { memo, useMemo, useState, useEffect } from "react"
 import Image from "next/image"
 
 type Product = {
@@ -16,7 +16,7 @@ type Product = {
   ratio?: "2/1" | "4/3"
 }
 
-export default function ProductGrid({ products }: { products: Product[] }) {
+function ProductGrid({ products }: { products: Product[] }) {
   const [openId, setOpenId] = useState<string | null>(null)
   const active = useMemo(() => products.find(p => p.id === openId) || null, [openId, products])
   const [selectedIndex, setSelectedIndex] = useState(0)
@@ -157,7 +157,7 @@ export default function ProductGrid({ products }: { products: Product[] }) {
                   <button
                     aria-label="Close"
                     onClick={() => setOpenId(null)}
-                    className="rounded-full bg-white/10 px-3 py-1 text-white hover:bgWHITE/20"
+                    className="rounded-full bg-white/10 px-3 py-1 text-white hover:bg-white/20"
                   >
                     ✕
                   </button>
@@ -199,3 +199,5 @@ export default function ProductGrid({ products }: { products: Product[] }) {
     </div>
   )
 }
+
+export default memo(ProductGrid)

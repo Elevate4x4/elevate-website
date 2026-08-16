@@ -1,10 +1,22 @@
 import { motion } from 'framer-motion'
+import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Link from 'next/link'
+import ProGallery from '@/components/ProGallery'
 
 export default function CanopiesTrays() {
   return (
     <>
+      <Head>
+        <title>Custom Aluminium Canopies & Ute Trays | Sunshine Coast QLD | Elevate</title>
+        <meta name="description" content="Premium 5052 marine-grade aluminium canopies and ute trays, built for Australian touring and trade. Stock and custom builds on the Sunshine Coast, QLD." />
+        <meta property="og:title" content="Custom Canopies & Ute Trays | Elevate 4x4 Touring Solutions" />
+        <meta property="og:description" content="Lightweight strength, serious functionality. Aluminium canopies and trays built for Aussie touring and trade." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/og-cover.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://www.elevate4x4.com.au/canopies-trays" />
+      </Head>
       <Navbar />
 
       {/* Hero */}
@@ -51,7 +63,7 @@ export default function CanopiesTrays() {
           </div>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {[
-'Full length undbody trundle draw',              
+'Full length underbody trundle drawer',
 'Integrated 50L fresh water tank',
               'Central locking ready',
               'Uni-strut channel roof mounting',
@@ -115,40 +127,23 @@ export default function CanopiesTrays() {
         </div>
       </section>
 
-      {/* Gallery placeholders */}
-{/* Gallery */}
-<section className="bg-black text-white py-16 px-6">
-  <div className="max-w-7xl mx-auto">
-    <h3 className="text-2xl font-bold mb-6">Gallery</h3>
-    <div className="grid sm:grid-cols-1 lg:grid-cols-3 gap-4">
-      {[
-        '/canopies-1.jpg', // real image
-        '/auto-electrical-9.jpg', // real image
-        '/gallery-3.jpg', // real image
-        '/fridge-surround-3.jpg', // real image
-        '/full-canopy-accessories.png', // real image
-        '/full-canopy-fitout.jpg', // real image
-      ].map((src, i) => (
-        <div
-          key={i}
-          className="w-full h-auto object-contain"
-        >
-          {src ? (
-            <img
-              src={src}
-              alt={`Canopies & Trays ${i + 1}`}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            <div className="w-full h-full bg-white/5 flex items-center justify-center text-gray-400">
-              Add <code>/gallery-{i + 1}.jpg</code>
-            </div>
-          )}
+      {/* Gallery */}
+      <section className="bg-black text-white py-16 px-6">
+        <div className="max-w-7xl mx-auto">
+          <h3 className="text-2xl font-bold mb-6">Gallery</h3>
+          <ProGallery
+            ratio="4/3"
+            images={[
+              { src: '/canopies-1.jpg' },
+              { src: '/auto-electrical-9.jpg' },
+              { src: '/gallery-3.jpg' },
+              { src: '/fridge-surround-3.jpg' },
+              { src: '/full-canopy-accessories.png' },
+              { src: '/full-canopy-fitout.jpg' },
+            ]}
+          />
         </div>
-      ))}
-    </div>
-  </div>
-</section>
+      </section>
 
 
       {/* Warranty & Specs */}

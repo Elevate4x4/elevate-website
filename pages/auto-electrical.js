@@ -1,5 +1,6 @@
 // pages/auto-electrical.js
 import { motion } from 'framer-motion'
+import Head from 'next/head'
 import Navbar from '../components/Navbar'
 import Link from 'next/link'
 import ProGallery from '@/components/ProGallery'
@@ -7,6 +8,16 @@ import ProGallery from '@/components/ProGallery'
 export default function AutoElectrical() {
   return (
     <>
+      <Head>
+        <title>Auto Electrical Fitouts | Lithium, Solar & 12V | Sunshine Coast QLD | Elevate</title>
+        <meta name="description" content="Custom auto electrical fitouts on the Sunshine Coast — lithium battery systems, solar & MPPT, central locking and clean, serviceable wiring." />
+        <meta property="og:title" content="Auto Electrical Fitouts | Elevate 4x4 Touring Solutions" />
+        <meta property="og:description" content="Clean, reliable canopy power systems and wiring, built for Aussie touring and trade." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/og-cover.jpg" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link rel="canonical" href="https://www.elevate4x4.com.au/auto-electrical" />
+      </Head>
       <Navbar />
 
       {/* Hero */}
